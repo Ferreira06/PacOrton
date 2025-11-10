@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c30qrm1xpi7yk"]
+[gd_scene load_steps=4 format=3 uid="uid://c30qrm1xpi7yk"]
+
+[ext_resource type="Script" uid="uid://cill75o65jf1f" path="res://play.gd" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://daartcxye8tln" path="res://quit.gd" id="2_7vrkn"]
 
 [sub_resource type="Theme" id="Theme_rhts7"]
 
@@ -31,6 +34,7 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "PLAY"
+script = ExtResource("1_06t4h")
 
 [node name="Settings" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(500, 0)
@@ -52,3 +56,4 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "QUIT
 "
+script = ExtResource("2_7vrkn")
