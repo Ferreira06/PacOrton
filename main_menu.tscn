@@ -2,9 +2,12 @@
 
 [sub_resource type="Theme" id="Theme_rhts7"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 500.0
 theme_override_font_sizes/font_size = 150
@@ -13,6 +16,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 offset_top = 500.0
 offset_right = 1920.0
 offset_bottom = 1080.0
