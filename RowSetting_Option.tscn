@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://brgm1nhls3wop"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+alignment = 1
