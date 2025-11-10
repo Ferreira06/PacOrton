@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0t2r72hr8s35"]
+[gd_scene load_steps=3 format=3 uid="uid://d0t2r72hr8s35"]
 
 [sub_resource type="Theme" id="Theme_oerog"]
 Label/font_sizes/font_size = 50
+
+[sub_resource type="Theme" id="Theme_ufg0w"]
+Button/font_sizes/font_size = 40
+OptionButton/font_sizes/font_size = 50
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -12,26 +16,164 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_oerog")
 
-[node name="Label" type="Label" parent="."]
+[node name="TitleLbl" type="Label" parent="."]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 200.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 1820.0
+offset_bottom = 153.0
 theme_override_font_sizes/font_size = 75
 text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_top = 200.0
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="SettingsVContainer" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ufg0w")
+theme_override_constants/separation = 15
+
+[node name="WindowLbl" type="Label" parent="Margin/SettingsVContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Window"
+horizontal_alignment = 1
+
+[node name="Resolution" type="HBoxContainer" parent="Margin/SettingsVContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+[node name="Label" type="Label" parent="Margin/SettingsVContainer/Resolution"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "Resolution"
+
+[node name="Gap" type="Control" parent="Margin/SettingsVContainer/Resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionResolution" type="OptionButton" parent="Margin/SettingsVContainer/Resolution"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "2560x1440"
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="Window" type="HBoxContainer" parent="Margin/SettingsVContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Margin/SettingsVContainer/Window"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "Window Mode"
+
+[node name="Gap" type="Control" parent="Margin/SettingsVContainer/Window"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionWindowMode" type="OptionButton" parent="Margin/SettingsVContainer/Window"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+
+[node name="VolumeLbl" type="Label" parent="Margin/SettingsVContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="VGeneral" type="HBoxContainer" parent="Margin/SettingsVContainer"]
+layout_mode = 2
+
+[node name="General" type="Label" parent="Margin/SettingsVContainer/VGeneral"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "General"
+
+[node name="Gap" type="Control" parent="Margin/SettingsVContainer/VGeneral"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VolumeSlider" type="HSlider" parent="Margin/SettingsVContainer/VGeneral"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 4
+step = 0.5
+
+[node name="VMusic" type="HBoxContainer" parent="Margin/SettingsVContainer"]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="Margin/SettingsVContainer/VMusic"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "Music"
+
+[node name="Gap" type="Control" parent="Margin/SettingsVContainer/VMusic"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VolumeSlider" type="HSlider" parent="Margin/SettingsVContainer/VMusic"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 4
+step = 0.5
+
+[node name="VSFX" type="HBoxContainer" parent="Margin/SettingsVContainer"]
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="Margin/SettingsVContainer/VSFX"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "SFX"
+
+[node name="Gap" type="Control" parent="Margin/SettingsVContainer/VSFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VolumeSlider" type="HSlider" parent="Margin/SettingsVContainer/VSFX"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 4
+step = 0.5
+
+[node name="Buttons" type="HBoxContainer" parent="Margin/SettingsVContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+theme_override_constants/separation = 15
+
+[node name="RestoreDefaults" type="Button" parent="Margin/SettingsVContainer/Buttons"]
+layout_mode = 2
+text = "RESTORE DEFAULTS"
+
+[node name="Apply" type="Button" parent="Margin/SettingsVContainer/Buttons"]
+layout_mode = 2
+text = "APPLY"
+
+[node name="Back" type="Button" parent="Margin/SettingsVContainer/Buttons"]
+layout_mode = 2
+text = "BACK"
