@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c30qrm1xpi7yk"]
+[gd_scene load_steps=10 format=3 uid="uid://c30qrm1xpi7yk"]
 
-[sub_resource type="Theme" id="Theme_rhts7"]
+[ext_resource type="Texture2D" uid="uid://pnw1d5o6hl1m" path="res://assets/UI Elements/background.svg" id="1_7vrkn"]
+[ext_resource type="Material" uid="uid://cr4gj18o6fnc6" path="res://assets/Shaders/WaveMaterial.tres" id="1_glbon"]
+[ext_resource type="Texture2D" uid="uid://o1comkdgde4h" path="res://assets/UI Elements/Title.svg" id="2_fu7sn"]
+[ext_resource type="Theme" uid="uid://db6ymrk43emn4" path="res://assets/UI Elements/UI Botao.tres" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://7xnq5hnrqpfy" path="res://bg.gd" id="3_nlkkf"]
 
 [sub_resource type="GDScript" id="GDScript_rhts7"]
 resource_name = "play_button"
@@ -42,6 +46,21 @@ func _pressed() -> void:
 layout_mode = 3
 anchors_preset = 0
 
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 3
+material = ExtResource("1_glbon")
+position = Vector2(959, 561)
+scale = Vector2(9.29, 9.29)
+texture = ExtResource("1_7vrkn")
+script = ExtResource("3_nlkkf")
+
+[node name="Title" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(953.99994, 184)
+scale = Vector2(7.51, 7.51)
+texture = ExtResource("2_fu7sn")
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_right = 1920.0
@@ -52,43 +71,64 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 0
-offset_top = 500.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-theme = SubResource("Theme_rhts7")
+material = ExtResource("1_glbon")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 712.00006
+offset_top = 273.00003
+offset_right = 1212.0002
+offset_bottom = 1131.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.755, 0.755)
+pivot_offset = Vector2(250, 500)
 
 [node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Play" type="Button" parent="CenterContainer/MainButtons"]
+texture_filter = 1
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme = ExtResource("3_fu7sn")
 theme_override_font_sizes/font_size = 75
 text = "PLAY"
 script = SubResource("GDScript_rhts7")
 
 [node name="Settings" type="Button" parent="CenterContainer/MainButtons"]
+texture_filter = 1
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme = ExtResource("3_fu7sn")
 theme_override_font_sizes/font_size = 75
 text = "SETTINGS
 "
 script = SubResource("GDScript_7vrkn")
 
 [node name="Credits" type="Button" parent="CenterContainer/MainButtons"]
+texture_filter = 1
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme = ExtResource("3_fu7sn")
 theme_override_font_sizes/font_size = 75
 text = "CREDITS
 "
 script = SubResource("GDScript_fu7sn")
 
 [node name="Quit" type="Button" parent="CenterContainer/MainButtons"]
+texture_filter = 1
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme = ExtResource("3_fu7sn")
 theme_override_font_sizes/font_size = 75
 text = "QUIT
 "
 script = SubResource("GDScript_06t4h")
+
+[connection signal="item_rect_changed" from="Background" to="Background" method="_Aspect_Ratio"]

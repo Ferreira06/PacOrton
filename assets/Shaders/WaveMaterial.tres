@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cr4gj18o6fnc6"]
+
+[ext_resource type="Shader" uid="uid://u27yjj2e780r" path="res://assets/Shaders/Wave.gdshader" id="1_11xu3"]
+
+[resource]
+shader = ExtResource("1_11xu3")
+shader_parameter/tile_fac = Vector2(0.95, 2.185)
+shader_parameter/aspect_ratio = 0.5
+shader_parameter/offset_scale = Vector2(0.1, 0)
