@@ -1,17 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://c30qrm1xpi7yk"]
-
-[ext_resource type="Script" uid="uid://cill75o65jf1f" path="res://play.gd" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://daartcxye8tln" path="res://quit.gd" id="2_7vrkn"]
-[ext_resource type="Script" uid="uid://c6rbt8ikshhll" path="res://settings.gd" id="2_fu7sn"]
+[gd_scene load_steps=5 format=3 uid="uid://c30qrm1xpi7yk"]
 
 [sub_resource type="Theme" id="Theme_rhts7"]
 
-[sub_resource type="GDScript" id="GDScript_fu7sn"]
+[sub_resource type="GDScript" id="GDScript_rhts7"]
+resource_name = "play_button"
 script/source = "extends Button
 
 
 func _pressed() -> void:
-	get_tree().change_scene_to_file(\"res://credits_menu.tscn\")
+	get_tree().change_scene_to_file(\"res://main_menu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_7vrkn"]
+resource_name = "settings_button"
+script/source = "extends Button
+
+
+func _pressed() -> void:
+	get_tree().change_scene_to_file(\"res://settings_menu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_06t4h"]
+resource_name = "quit_button"
+script/source = "extends Button
+
+
+func _pressed() -> void:
+	get_tree().quit()
 "
 
 [node name="MainMenu" type="Control"]
@@ -43,7 +58,7 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "PLAY"
-script = ExtResource("1_06t4h")
+script = SubResource("GDScript_rhts7")
 
 [node name="Settings" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(500, 0)
@@ -51,7 +66,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "SETTINGS
 "
-script = ExtResource("2_fu7sn")
+script = SubResource("GDScript_7vrkn")
 
 [node name="Credits" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(500, 0)
@@ -59,7 +74,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "CREDITS
 "
-script = SubResource("GDScript_fu7sn")
 
 [node name="Quit" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(500, 0)
@@ -67,4 +81,4 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "QUIT
 "
-script = ExtResource("2_7vrkn")
+script = SubResource("GDScript_06t4h")
