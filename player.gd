@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # CRITICAL: Set this to (16, 16) in the Inspector.
 @export var tile_size: Vector2 = Vector2(16, 16)
-@export var speed: int = 150
+@export var speed: int = 110
 
 var current_dir: Vector2 = Vector2.ZERO
 var queued_dir: Vector2 = Vector2.ZERO
