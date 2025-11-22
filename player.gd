@@ -1,25 +1,72 @@
 extends CharacterBody2D
 
-@export var speed = 150.0
-@export var movement_direction := Vector2.ZERO
+# CRITICAL: Set this to (16, 16) in the Inspector.
+@export var tile_size: Vector2 = Vector2(16, 16)
+@export var speed: int = 150
 
-@onready var _pacman_animation: AnimatedSprite2D = $PacmanAnimation
+var current_dir: Vector2 = Vector2.ZERO
+var queued_dir: Vector2 = Vector2.ZERO
+var target_pos: Vector2 = Vector2.ZERO
 
+# We no longer need the RayCast2D node. You can delete it from the scene.
 
-func get_input():
-	
-	if Input.is_action_pressed("ui_left"):
-		movement_direction = Vector2(-1, 0)
+func _ready() -> void:
+	# Snap to grid to ensure we start clean.
+	position = position.snapped(tile_size)
+	target_pos = position
+
+func _physics_process(delta: float) -> void:
+	handle_input()
+	move_player(delta)
+
+func handle_input() -> void:
 	if Input.is_action_pressed("ui_right"):
-		movement_direction = Vector2(1, 0)
-	if Input.is_action_pressed("ui_up"):
-		movement_direction = Vector2(0, -1)
-	if Input.is_action_pressed("ui_down"):
-		movement_direction = Vector2(0, 1)
-	
-	velocity = movement_direction * speed
+		queued_dir = Vector2.RIGHT
+	elif Input.is_action_pressed("ui_left"):
+		queued_dir = Vector2.LEFT
+	elif Input.is_action_pressed("ui_up"):
+		queued_dir = Vector2.UP
+	elif Input.is_action_pressed("ui_down"):
+		queued_dir = Vector2.DOWN
 
-func _physics_process(_delta):
-	_pacman_animation.play("normal")
-	get_input()
-	move_and_slide()
+func move_player(delta: float) -> void:
+	# 1. Check if we have arrived at the target tile center
+	if current_dir == Vector2.ZERO or position.distance_to(target_pos) < 1.5:
+		position = target_pos
+		
+		# 2. Try to turn (Queued Direction)
+		if queued_dir != Vector2.ZERO and can_move(queued_dir):
+			current_dir = queued_dir
+			target_pos = position + (current_dir * get_step_size(current_dir))
+		
+		# 3. If we can't turn, try to keep going Straight
+		elif current_dir != Vector2.ZERO and can_move(current_dir):
+			target_pos = position + (current_dir * get_step_size(current_dir))
+		
+		# 4. Stop if blocked
+		else:
+			current_dir = Vector2.ZERO
+	
+	# 5. Move execution
+	if current_dir != Vector2.ZERO:
+		position = position.move_toward(target_pos, speed * delta)
+
+func get_step_size(dir: Vector2) -> float:
+	if dir.x != 0:
+		return tile_size.x
+	else:
+		return tile_size.y
+
+# REPLACED: Using Physics Server test_move instead of RayCast
+func can_move(direction: Vector2) -> bool:
+	# 1. Determine how far we want to check (one grid step)
+	var step = direction * get_step_size(direction)
+	
+	# 2. Use the physics engine to test a virtual movement.
+	# global_transform: The player's current position and rotation.
+	# step: The vector we want to travel.
+	# test_move returns TRUE if a collision WOULD happen.
+	var would_collide = test_move(global_transform, step)
+	
+	# If we WOULD collide, we CANNOT move.
+	return not would_collide

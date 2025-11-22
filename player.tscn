@@ -94,5 +94,8 @@ animation = &"normal"
 autoplay = "normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.30619764, -0.6123953)
 shape = SubResource("CircleShape2D_ivps1")
+debug_color = Color(0.81302685, 0.40991554, 7.70092e-07, 0.41960785)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
