@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp0soh3ybclm8"]
+
+[sub_resource type="GDScript" id="GDScript_xwscs"]
+resource_name = "back_button"
+script/source = "extends Button
+
+
+func _pressed() -> void:
+	get_tree().change_scene_to_file(\"res://main_menu.tscn\")
+"
+
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 150
+text = "Developed by"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 1920.0
+offset_bottom = 880.0
+
+[node name="Names" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Ana Julia Arantes Ramos
+Fábio Haruo de Freitas Nishioka
+Gabriel Ferreira Fonseca
+Gabriel José Fernandes
+Sabrina Lima Costa"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1697.0
+offset_top = 953.0
+offset_right = 1820.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 50
+text = "Back"
+script = SubResource("GDScript_xwscs")
