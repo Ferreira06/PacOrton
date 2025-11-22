@@ -1,4 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp0soh3ybclm8"]
+[gd_scene load_steps=10 format=3 uid="uid://cp0soh3ybclm8"]
+
+[ext_resource type="FontFile" uid="uid://ckm7k6ig05yqr" path="res://assets/RetroByte.ttf" id="1_ftkwe"]
+[ext_resource type="Theme" uid="uid://db6ymrk43emn4" path="res://assets/UI Elements/UI Botao.tres" id="2_mrtxy"]
+[ext_resource type="Material" uid="uid://cr4gj18o6fnc6" path="res://assets/Shaders/Material/WaveMaterial.tres" id="3_3gmu8"]
+[ext_resource type="Texture2D" uid="uid://pnw1d5o6hl1m" path="res://assets/UI Elements/background.svg" id="5_ftkwe"]
+[ext_resource type="Material" uid="uid://yqukn7psm6jd" path="res://assets/Shaders/Material/Float.tres" id="5_itddf"]
+[ext_resource type="Script" uid="uid://7xnq5hnrqpfy" path="res://bg.gd" id="6_mrtxy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4i6ig"]
+font = ExtResource("1_ftkwe")
+font_size = 271
+font_color = Color(3.0807931, 4.438755, 5.3174357, 1)
+outline_size = 35
+outline_color = Color(0.19607843, 0.2, 0.3254902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftkwe"]
+font = ExtResource("1_ftkwe")
+font_size = 81
+outline_size = 25
+outline_color = Color(0.19607843, 0.2, 0.3254902, 1)
 
 [sub_resource type="GDScript" id="GDScript_xwscs"]
 resource_name = "back_button"
@@ -18,15 +38,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 300.0
 theme_override_font_sizes/font_size = 150
 text = "Developed by"
+label_settings = SubResource("LabelSettings_4i6ig")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+texture_filter = 1
+material = ExtResource("5_itddf")
 layout_mode = 0
 offset_top = 300.0
 offset_right = 1920.0
@@ -34,20 +58,35 @@ offset_bottom = 880.0
 
 [node name="Names" type="Label" parent="CenterContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 16
 text = "Ana Julia Arantes Ramos
 Fábio Haruo de Freitas Nishioka
 Gabriel Ferreira Fonseca
 Gabriel José Fernandes
 Sabrina Lima Costa"
+label_settings = SubResource("LabelSettings_ftkwe")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1697.0
-offset_top = 953.0
-offset_right = 1820.0
-offset_bottom = 1030.0
+texture_filter = 1
+layout_mode = 1
+offset_left = 1547.0
+offset_top = 875.0
+offset_right = 1897.0
+offset_bottom = 1060.0
+theme = ExtResource("2_mrtxy")
 theme_override_font_sizes/font_size = 50
 text = "Back"
 script = SubResource("GDScript_xwscs")
+
+[node name="Background" type="Sprite2D" parent="Button"]
+z_index = -1
+texture_filter = 1
+texture_repeat = 3
+material = ExtResource("3_3gmu8")
+position = Vector2(-570, -317)
+scale = Vector2(9.29, 9.29)
+texture = ExtResource("5_ftkwe")
+script = ExtResource("6_mrtxy")
+
+[connection signal="item_rect_changed" from="Button/Background" to="Button/Background" method="_Aspect_Ratio"]

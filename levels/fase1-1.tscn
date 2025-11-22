@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://c02ht16qnurhv"]
 
 [ext_resource type="TileSet" uid="uid://dx85xjs06gfsb" path="res://assets/TileSet/FaseTile.tres" id="1_jx0ln"]
-[ext_resource type="Material" uid="uid://d14hu2h6avwxm" path="res://assets/Shaders/offset.tres" id="2_ydhy5"]
+[ext_resource type="Material" uid="uid://d14hu2h6avwxm" path="res://assets/Shaders/Material/offset.tres" id="2_ydhy5"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="3_s7jqn"]
 
 [node name="TileMapLayer" type="TileMapLayer"]

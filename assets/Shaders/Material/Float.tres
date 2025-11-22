@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://yqukn7psm6jd"]
+
+[ext_resource type="Shader" uid="uid://dimcdqgw4yowh" path="res://assets/Shaders/SFloat.gdshader" id="1_3cvtt"]
+
+[resource]
+shader = ExtResource("1_3cvtt")
+shader_parameter/amplitude = 1.0
+shader_parameter/speed = 2.0
