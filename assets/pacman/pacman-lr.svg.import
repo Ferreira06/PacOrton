@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwt6qftpv4aq4"
-path="res://.godot/imported/pacnorton.svg-c475409a05391ed9c8f83ef34db1fcc2.ctex"
+uid="uid://cgkd117fchp4i"
+path="res://.godot/imported/pacman-lr.svg-76ccbeeb9c14fb8b77dcea02c40b4b3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pacman/pacnorton.svg"
-dest_files=["res://.godot/imported/pacnorton.svg-c475409a05391ed9c8f83ef34db1fcc2.ctex"]
+source_file="res://assets/pacman/pacman-lr.svg"
+dest_files=["res://.godot/imported/pacman-lr.svg-76ccbeeb9c14fb8b77dcea02c40b4b3b.ctex"]
 
 [params]
 

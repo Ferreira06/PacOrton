@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var tile_size: Vector2 = Vector2(16, 16)
 @export var speed: int = 110
 
+@onready var pacman_animation: AnimatedSprite2D = $PacmanAnimation
+
 var current_dir: Vector2 = Vector2.ZERO
 var queued_dir: Vector2 = Vector2.ZERO
 var target_pos: Vector2 = Vector2.ZERO
@@ -21,12 +23,23 @@ func _physics_process(delta: float) -> void:
 
 func handle_input() -> void:
 	if Input.is_action_pressed("ui_right"):
+		pacman_animation.play("normal-right")
+		pacman_animation.flip_h = false
 		queued_dir = Vector2.RIGHT
+		
 	elif Input.is_action_pressed("ui_left"):
+		pacman_animation.play("normal-right")
+		pacman_animation.flip_h = true
 		queued_dir = Vector2.LEFT
+		
 	elif Input.is_action_pressed("ui_up"):
+		pacman_animation.play("normal-up")
+		pacman_animation.flip_v = false
 		queued_dir = Vector2.UP
+		
 	elif Input.is_action_pressed("ui_down"):
+		pacman_animation.play("normal-up")
+		pacman_animation.flip_v = true
 		queued_dir = Vector2.DOWN
 
 func move_player(delta: float) -> void:
