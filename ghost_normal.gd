@@ -1,25 +1,76 @@
 extends CharacterBody2D
 
+@export var speed = 115
+const tile_size = Vector2(16, 16)
+var current_dir: Vector2 = Vector2.ZERO
+var queued_dir: Vector2 = Vector2.ZERO
+var target_pos: Vector2 = Vector2.ZERO
+var player = Vector2(1280, 720)
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
+func _ready() -> void:
+	position = position.snapped(tile_size) + tile_size/2.0
+	target_pos = position
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	move(available_moves(), delta)
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+func min_dist(available_directions) -> Vector2:
+	var min_d = INF
+	var min_dir := Vector2.ZERO
+	for dir in available_directions:
+		var new_pos = position + dir * 16
+		var dist = new_pos.distance_to(player)
+		if dist < min_d:
+			min_dir = dir
+			min_d = dist
+	return min_dir
+
+func move(available_directions, delta) -> void:
+	var min_d = min_dist(available_directions)
+	
+	print(min_d)
+	current_dir = min_d
+	
+	if current_dir == Vector2.ZERO or position.distance_to(target_pos) < 1.5:
+		position = target_pos
+		
+		if current_dir != Vector2.ZERO and can_move(current_dir):
+			target_pos = position + (current_dir * get_step_size(current_dir))
+#
+	## 5. Move execution
+	if current_dir != Vector2.ZERO:
+		position = position.move_toward(target_pos, speed * delta)
+
+
+func get_step_size(dir: Vector2) -> float:
+	if dir.x != 0:
+		return tile_size.x
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		return tile_size.y
 
-	move_and_slide()
+
+func available_moves() -> Array[Vector2]:
+	var directions := [Vector2.UP, Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT]
+	var available_directions: Array[Vector2] = []
+	
+	for v2 in directions:
+		if can_move(v2) and v2 != -current_dir:
+			#print("Can move:", v2)
+			available_directions.append(v2)
+		#else:
+			#print("Cannot move:", v2)
+	
+	return available_directions
+
+
+func can_move(direction: Vector2) -> bool:
+	if direction == Vector2.UP and not $ghost_up.is_colliding():
+		return true
+	elif direction == Vector2.LEFT and not $ghost_left.is_colliding():
+		return true
+	elif direction == Vector2.RIGHT and not $ghost_right.is_colliding():
+		return true
+	elif direction == Vector2.DOWN and not $ghost_down.is_colliding():
+		return true
+	return false
