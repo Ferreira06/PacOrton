@@ -45,7 +45,6 @@ func handle_input() -> void:
 func move_player(delta: float) -> void:
 	# 1. Check if we have arrived at the target tile center
 	if current_dir == Vector2.ZERO or position.distance_to(target_pos) < 1.5:
-		print("cecília")
 		position = target_pos
 		
 		# 2. Try to turn (Queued Direction)
@@ -60,8 +59,6 @@ func move_player(delta: float) -> void:
 		# 4. Stop if blocked
 		else:
 			current_dir = Vector2.ZERO
-	else:
-		print("gustavo")
 
 	# 5. Move execution
 	if current_dir != Vector2.ZERO:
@@ -75,14 +72,24 @@ func get_step_size(dir: Vector2) -> float:
 
 # REPLACED: Using Physics Server test_move instead of RayCast
 func can_move(direction: Vector2) -> bool:
-	# 1. Determine how far we want to check (one grid step)
-	var step = direction * get_step_size(direction)
-	
-	# 2. Use the physics engine to test a virtual movement.
-	# global_transform: The player's current position and rotation.
-	# step: The vector we want to travel.
-	# test_move returns TRUE if a collision WOULD happen.
-	var would_collide = test_move(global_transform, step)
-	
-	# If we WOULD collide, we CANNOT move.
-	return not would_collide
+	if direction == Vector2.UP and not $up.is_colliding():
+		return true
+	if direction == Vector2.LEFT and not $left.is_colliding():
+		return true
+	if direction == Vector2.RIGHT and not $right.is_colliding():
+		return true
+	if direction == Vector2.DOWN and not $down.is_colliding():
+		return true
+	return false
+
+	## 1. Determine how far we want to check (one grid step)
+	#var step = direction * get_step_size(direction)
+	#
+	## 2. Use the physics engine to test a virtual movement.
+	## global_transform: The player's current position and rotation.
+	## step: The vector we want to travel.
+	## test_move returns TRUE if a collision WOULD happen.
+	#var would_collide = test_move(global_transform, step)
+	#
+	## If we WOULD collide, we CANNOT move.
+	#return not would_collide
