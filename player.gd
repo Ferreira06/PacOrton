@@ -14,7 +14,7 @@ var target_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	# Snap to grid to ensure we start clean.
-	position = position.snapped(tile_size)
+	position = position.snapped(tile_size) + tile_size/2.0
 	target_pos = position
 
 func _physics_process(delta: float) -> void:
@@ -45,6 +45,7 @@ func handle_input() -> void:
 func move_player(delta: float) -> void:
 	# 1. Check if we have arrived at the target tile center
 	if current_dir == Vector2.ZERO or position.distance_to(target_pos) < 1.5:
+		print("cecília")
 		position = target_pos
 		
 		# 2. Try to turn (Queued Direction)
@@ -59,7 +60,9 @@ func move_player(delta: float) -> void:
 		# 4. Stop if blocked
 		else:
 			current_dir = Vector2.ZERO
-	
+	else:
+		print("gustavo")
+
 	# 5. Move execution
 	if current_dir != Vector2.ZERO:
 		position = position.move_toward(target_pos, speed * delta)

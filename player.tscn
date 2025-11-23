@@ -147,11 +147,13 @@ animations = [{
 radius = 14.0
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.7498028, 0.7498028)
+texture_filter = 1
+scale = Vector2(0.450532, 0.450532)
 motion_mode = 1
 script = ExtResource("1_onrkg")
 
 [node name="PacmanAnimation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 scale = Vector2(0.9999998, 0.9999998)
 sprite_frames = SubResource("SpriteFrames_nvl01")
 animation = &"normal-up"
