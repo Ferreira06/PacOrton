@@ -25,3 +25,7 @@ window/stretch/mode="canvas_items"
 [gui]
 
 theme/custom_font="uid://ckm7k6ig05yqr"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
