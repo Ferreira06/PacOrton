@@ -1,12 +1,13 @@
 [gd_scene load_steps=65 format=3 uid="uid://s08uidg41e7x"]
 
-[ext_resource type="Script" uid="uid://cuje7iupgfeyg" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://cuje7iupgfeyg" path="res://scenes/player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cgkd117fchp4i" path="res://assets/pacman/pacman-lr.svg" id="2_onrkg"]
-[ext_resource type="PackedScene" uid="uid://cxruft6xgpp15" path="res://bullet.tscn" id="2_sweqy"]
-[ext_resource type="PackedScene" uid="uid://dn6n135ihtelb" path="res://power_up_screen.tscn" id="3_2hs0m"]
+[ext_resource type="PackedScene" uid="uid://cxruft6xgpp15" path="res://scenes/bullet/bullet.tscn" id="2_sweqy"]
+[ext_resource type="PackedScene" uid="uid://dn6n135ihtelb" path="res://scenes/power-up/power_up_screen.tscn" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://kitwsd8fuw7b" path="res://assets/pacman/pacman-ud.svg" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://2bvt7cifelub" path="res://assets/powerups/PacManGUN.svg" id="6_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://d2tp783riuci" path="res://assets/powerups/PacManSPEED.svg" id="7_dw050"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")

@@ -1,7 +1,8 @@
 [gd_scene load_steps=29 format=3 uid="uid://xbepkpqt24ay"]
 
 [ext_resource type="Texture2D" uid="uid://b77i76ty53jib" path="res://assets/ghosts/normal-ghost.svg" id="1_36l5f"]
-[ext_resource type="Script" uid="uid://cuauh14160wh2" path="res://ghost_normal.gd" id="1_tpqef"]
+[ext_resource type="Script" uid="uid://cuauh14160wh2" path="res://scenes/ghost/base/ghost_normal.gd" id="1_tpqef"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpqef"]
 atlas = ExtResource("1_36l5f")

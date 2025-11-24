@@ -1,8 +1,9 @@
 [gd_scene load_steps=26 format=3 uid="uid://ctei6nkbx8kiw"]
 
-[ext_resource type="Script" uid="uid://d4hcwvclp0su2" path="res://collectible.gd" id="1_8orai"]
+[ext_resource type="Script" uid="uid://d4hcwvclp0su2" path="res://scenes/collectible/collectible.gd" id="1_8orai"]
 [ext_resource type="Texture2D" uid="uid://dddp5qtx146bk" path="res://assets/collectibles/ball.svg" id="1_rd2yi"]
 [ext_resource type="Texture2D" uid="uid://c3a25bok1lq2d" path="res://assets/collectibles/star.svg" id="3_yciwo"]
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yciwo"]
 radius = 7.0

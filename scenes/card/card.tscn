@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://dqjx7wthjrgwl"]
 
-[ext_resource type="Script" uid="uid://dsd05ik516knb" path="res://card.gd" id="1_kikvd"]
+[ext_resource type="Script" uid="uid://dsd05ik516knb" path="res://scenes/card/card.gd" id="1_kikvd"]
 [ext_resource type="Texture2D" uid="uid://d2wuch3yxkk06" path="res://assets/powerups/PowerUp Gunt.svg" id="2_q5obu"]
 [ext_resource type="Texture2D" uid="uid://dh6in02kyvhfx" path="res://assets/powerups/PowerUpSpeedSheet.svg" id="3_e484p"]
 
@@ -170,4 +170,3 @@ script = ExtResource("1_kikvd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rjlel")
 animation = &"gun_card_anim"
-frame_progress = 0.51319736

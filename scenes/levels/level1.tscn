@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=4 uid="uid://b3nx3std6uxmr"]
 
 [ext_resource type="TileSet" uid="uid://djwdf8rk7wswk" path="res://pacman_tileset.tres" id="1_sjb42"]
-[ext_resource type="Script" uid="uid://bf5qsnwy1fh2y" path="res://levels/level_generator.gd" id="2_61w3m"]
+[ext_resource type="Script" uid="uid://bf5qsnwy1fh2y" path="res://scenes/levels/level_generator.gd" id="2_61w3m"]
 [ext_resource type="TileSet" uid="uid://dx85xjs06gfsb" path="res://assets/TileSet/FaseTile.tres" id="2_b3oru"]
 [ext_resource type="Material" uid="uid://d14hu2h6avwxm" path="res://assets/Shaders/Material/offset.tres" id="3_61w3m"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="4_pdpul"]
-[ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://collectible.tscn" id="6_pdpul"]
+[ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://scenes/collectible/collectible.tscn" id="6_pdpul"]
 
 [node name="Fase 1" type="TileMapLayer" node_paths=PackedStringArray("walkable_layer")]
 tile_set = ExtResource("1_sjb42")

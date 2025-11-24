@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dn6n135ihtelb"]
 
-[ext_resource type="Script" uid="uid://cor5emjpyjekp" path="res://power_up_screen.gd" id="1_6mlxt"]
-[ext_resource type="PackedScene" uid="uid://dqjx7wthjrgwl" path="res://card.tscn" id="2_txcxs"]
+[ext_resource type="Script" uid="uid://cor5emjpyjekp" path="res://scenes/power-up/power_up_screen.gd" id="1_6mlxt"]
+[ext_resource type="PackedScene" uid="uid://dqjx7wthjrgwl" path="res://scenes/card/card.tscn" id="2_txcxs"]
 
 [node name="PowerUpScreen" type="CanvasLayer"]
 process_mode = 3

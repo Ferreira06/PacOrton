@@ -5,7 +5,8 @@
 [ext_resource type="Material" uid="uid://cr4gj18o6fnc6" path="res://assets/Shaders/Material/WaveMaterial.tres" id="3_3gmu8"]
 [ext_resource type="Texture2D" uid="uid://pnw1d5o6hl1m" path="res://assets/UI Elements/background.svg" id="5_ftkwe"]
 [ext_resource type="Material" uid="uid://yqukn7psm6jd" path="res://assets/Shaders/Material/Float.tres" id="5_itddf"]
-[ext_resource type="Script" uid="uid://7xnq5hnrqpfy" path="res://bg.gd" id="6_mrtxy"]
+[ext_resource type="Script" uid="uid://7xnq5hnrqpfy" path="res://scripts/bg.gd" id="6_mrtxy"]
+
 
 [sub_resource type="LabelSettings" id="LabelSettings_4i6ig"]
 font = ExtResource("1_ftkwe")
