@@ -5,3 +5,10 @@
 [resource]
 shader = ExtResource("1_wc3hv")
 shader_parameter/Speed = 0.40000000596048
+shader_parameter/scale = 0.0
+shader_parameter/distancia_x = 0.30000000447036
+shader_parameter/distancia_y = 0.30000000447036
+shader_parameter/onda_x = 0.5000000074506
+shader_parameter/onda_y = 0.5000000074506
+shader_parameter/velocity = 0.5000000074506
+shader_parameter/offset_scale = Vector2(2, 2)
