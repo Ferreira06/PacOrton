@@ -9,6 +9,8 @@ extends CharacterBody2D
 var current_dir: Vector2 = Vector2.ZERO
 var queued_dir: Vector2 = Vector2.ZERO
 var target_pos: Vector2 = Vector2.ZERO
+var is_powered_up: bool = false
+var xp: int = 0
 
 # We no longer need the RayCast2D node. You can delete it from the scene.
 
@@ -70,7 +72,6 @@ func get_step_size(dir: Vector2) -> float:
 	else:
 		return tile_size.y
 
-# REPLACED: Using Physics Server test_move instead of RayCast
 func can_move(direction: Vector2) -> bool:
 	if direction == Vector2.UP and not $up.is_colliding():
 		return true
@@ -82,14 +83,27 @@ func can_move(direction: Vector2) -> bool:
 		return true
 	return false
 
-	## 1. Determine how far we want to check (one grid step)
-	#var step = direction * get_step_size(direction)
-	#
-	## 2. Use the physics engine to test a virtual movement.
-	## global_transform: The player's current position and rotation.
-	## step: The vector we want to travel.
-	## test_move returns TRUE if a collision WOULD happen.
-	#var would_collide = test_move(global_transform, step)
-	#
-	## If we WOULD collide, we CANNOT move.
-	#return not would_collide
+func activate_power_up(duration: float):
+	is_powered_up = true
+	# Change appearance (Visual feedback)
+	modulate = Color(1, 1, 0.5) # Turn yellowish/bright
+	
+	# Wait for the duration, then turn it off
+	await get_tree().create_timer(duration).timeout
+	
+	is_powered_up = false
+	modulate = Color(1, 1, 1) # Reset color
+
+func hit_by_ghost():
+	if is_powered_up:
+		return
+	else:
+		die()
+
+func die():
+	print("Pacman died!")
+	get_tree().reload_current_scene()
+	
+func gain_xp(amount: int):
+	xp += amount
+	print("Current XP: ", xp)
