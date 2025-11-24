@@ -208,6 +208,7 @@ animations = [{
 
 [node name="Ghost" type="CharacterBody2D"]
 scale = Vector2(0.3791286, 0.3791286)
+collision_layer = 513
 motion_mode = 1
 script = ExtResource("1_tpqef")
 

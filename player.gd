@@ -4,6 +4,14 @@ extends CharacterBody2D
 @export var tile_size: Vector2 = Vector2(16, 16)
 @export var speed: int = 110
 
+@export var bullet_scene: PackedScene 
+@export var level_up_scene: PackedScene 
+
+@export var sprite_gun: Texture2D
+@export var sprite_speed: Texture2D
+@onready var gun_decoration: AnimatedSprite2D = $GunDecoration
+@onready var speed_decoration: AnimatedSprite2D = $SpeedDecoration
+
 @onready var pacman_animation: AnimatedSprite2D = $PacmanAnimation
 
 var current_dir: Vector2 = Vector2.ZERO
@@ -11,8 +19,11 @@ var queued_dir: Vector2 = Vector2.ZERO
 var target_pos: Vector2 = Vector2.ZERO
 var is_powered_up: bool = false
 var xp: int = 0
+var level: int = 1
 
-# We no longer need the RayCast2D node. You can delete it from the scene.
+var has_gun: bool = false
+var has_speed_boost: bool = false
+var can_active_boost: bool = true
 
 func _ready() -> void:
 	# Snap to grid to ensure we start clean.
@@ -21,7 +32,28 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_input()
+	
+	# Lógica do Boost Ativo (Tecla SPACE)
+	if has_speed_boost and Input.is_action_just_pressed("dash") and can_active_boost:
+		activate_speed_boost()
+		
+	# Lógica do Tiro (Tecla Z ou Clique)
+	if has_gun and Input.is_action_just_pressed("shoot"): # Configure "ui_accept" ou crie "shoot"
+		shoot()
+		
 	move_player(delta)
+	if has_gun:
+		gun_decoration.flip_h = pacman_animation.flip_h
+		gun_decoration.flip_v = pacman_animation.flip_v
+		# Opcional: Se o acessório tiver animação de andar, toque ela também
+		if current_dir != Vector2.ZERO:
+			gun_decoration.play("walk") # Certifique-se que existe essa animação
+		else:
+			gun_decoration.play("idle")
+
+	if has_speed_boost:
+		speed_decoration.flip_h = pacman_animation.flip_h
+		speed_decoration.flip_v = pacman_animation.flip_v
 
 func handle_input() -> void:
 	if Input.is_action_pressed("ui_right"):
@@ -106,4 +138,54 @@ func die():
 	
 func gain_xp(amount: int):
 	xp += amount
-	print("Current XP: ", xp)
+	print("XP: ", xp)
+	print("Lvl: ", level)	
+	if xp >= 10 and level == 1:
+		trigger_level_up()
+
+func trigger_level_up():
+	level += 1
+	# Instancia a tela de Level Up
+	if level_up_scene:
+		var menu = level_up_scene.instantiate()
+		get_tree().root.add_child(menu) # Adiciona na raiz para ficar sobre tudo
+		menu.show_cards()
+		menu.upgrade_selected.connect(_apply_upgrade)
+
+func _apply_upgrade(power_id: int):
+	match power_id:
+		1: # ARMA
+			has_gun = true
+			gun_decoration.visible = true # MOSTRA A ARMA
+			print("Poder: Arma Adquirido!")
+		2: # VELOCIDADE
+			has_speed_boost = true
+			speed = 140 
+			speed_decoration.visible = true # MOSTRA O ACESSÓRIO DE VELOCIDADE
+			print("Poder: Velocidade Adquirida!")
+			
+			
+func shoot():
+	if not bullet_scene: return
+	
+	var bullet = bullet_scene.instantiate()
+	bullet.position = position
+	# Define a direção do tiro baseada na última direção do player
+	var shoot_dir = current_dir if current_dir != Vector2.ZERO else Vector2.RIGHT
+	bullet.direction = shoot_dir
+	bullet.rotation = shoot_dir.angle() # Gira o sprite da bala
+	get_parent().add_child(bullet)
+
+func activate_speed_boost():
+	can_active_boost = false
+	var old_speed = speed
+	speed = 250 # Velocidade insana por 2 segundos
+	
+	# Cria um timer temporário
+	await get_tree().create_timer(2.0).timeout
+	
+	speed = old_speed # Volta ao normal (que já é o buffado passivo)
+	
+	# Cooldown de 5 segundos para usar de novo
+	await get_tree().create_timer(5.0).timeout
+	can_active_boost = true

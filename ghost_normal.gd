@@ -5,6 +5,7 @@ const tile_size = Vector2(16, 16)
 var current_dir: Vector2 = Vector2.ZERO
 var queued_dir: Vector2 = Vector2.ZERO
 var target_pos: Vector2 = Vector2.ZERO
+var hp: int = 5
 var player = Vector2(1280, 720)
 @export var player_node: Node2D # Drag your Player object here in the Inspector!
 
@@ -36,7 +37,6 @@ func min_dist(available_directions) -> Vector2:
 func move(available_directions, delta) -> void:
 	var min_d = min_dist(available_directions)
 	
-	print(min_d)
 	current_dir = min_d
 	
 	if current_dir == Vector2.ZERO or position.distance_to(target_pos) < 1.5:
@@ -63,10 +63,8 @@ func available_moves() -> Array[Vector2]:
 	
 	for v2 in directions:
 		if can_move(v2) and v2 != -current_dir:
-			#print("Can move:", v2)
 			available_directions.append(v2)
 		#else:
-			#print("Cannot move:", v2)
 	
 	return available_directions
 
@@ -91,6 +89,15 @@ func _on_hitbox_body_entered(body: Node):
 		else:
 			body.hit_by_ghost()
 
+func take_damage(amount: int) -> void:
+	hp -= amount
+	# Feedback visual (piscar vermelho)
+	modulate = Color(1, 0, 0)
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.2)
+	
+	if hp <= 0:
+		die()
 func die():
 	print("Ghost eaten!")
 	queue_free() # Remove ghost

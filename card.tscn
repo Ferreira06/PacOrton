@@ -1,0 +1,173 @@
+[gd_scene load_steps=25 format=3 uid="uid://dqjx7wthjrgwl"]
+
+[ext_resource type="Script" uid="uid://dsd05ik516knb" path="res://card.gd" id="1_kikvd"]
+[ext_resource type="Texture2D" uid="uid://d2wuch3yxkk06" path="res://assets/powerups/PowerUp Gunt.svg" id="2_q5obu"]
+[ext_resource type="Texture2D" uid="uid://dh6in02kyvhfx" path="res://assets/powerups/PowerUpSpeedSheet.svg" id="3_e484p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpac0"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i5pp"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjytt"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4rk6"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lcat"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut1v0"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vno60"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0gnn"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is7yf"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5biq5"]
+atlas = ExtResource("2_q5obu")
+region = Rect2(288, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kicxe"]
+atlas = ExtResource("3_e484p")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaj0s"]
+atlas = ExtResource("3_e484p")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbpyt"]
+atlas = ExtResource("3_e484p")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8qr4"]
+atlas = ExtResource("3_e484p")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvrdl"]
+atlas = ExtResource("3_e484p")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soe5h"]
+atlas = ExtResource("3_e484p")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd7f1"]
+atlas = ExtResource("3_e484p")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jvtn"]
+atlas = ExtResource("3_e484p")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_astg2"]
+atlas = ExtResource("3_e484p")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhwgv"]
+atlas = ExtResource("3_e484p")
+region = Rect2(288, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjlel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpac0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i5pp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjytt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4rk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lcat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ut1v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vno60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0gnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is7yf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5biq5")
+}],
+"loop": true,
+"name": &"gun_card_anim",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kicxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaj0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbpyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8qr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvrdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soe5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd7f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jvtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_astg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhwgv")
+}],
+"loop": true,
+"name": &"speed_card_anim",
+"speed": 10.0
+}]
+
+[node name="card" type="TextureButton"]
+custom_minimum_size = Vector2(100, 100)
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kikvd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rjlel")
+animation = &"gun_card_anim"
+frame_progress = 0.51319736
