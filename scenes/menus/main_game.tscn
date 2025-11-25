@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://vjulnprmxsr7"]
+[gd_scene load_steps=2 format=3 uid="uid://vjulnprmxsr7"]
 
 [ext_resource type="PackedScene" uid="uid://c02ht16qnurhv" path="res://scenes/levels/Level1/level1.tscn" id="1_ykeeq"]
-[ext_resource type="PackedScene" uid="uid://xbepkpqt24ay" path="res://scenes/ghost/base/ghost_normal.tscn" id="2_yx7mw"]
 
 [node name="MainGame" type="Node2D"]
 
 [node name="Fase 1" parent="." instance=ExtResource("1_ykeeq")]
 position = Vector2(16, 0)
 
+<<<<<<< Updated upstream
 [node name="Goal" type="Marker2D" parent="."]
 position = Vector2(680, 24)
 
@@ -18,6 +18,8 @@ collision_layer = 767
 collision_mask = 255
 Goal = NodePath("../Goal")
 
+=======
+>>>>>>> Stashed changes
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(368, 305)
 zoom = Vector2(1.79, 1.79)

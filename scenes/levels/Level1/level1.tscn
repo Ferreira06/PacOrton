@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://c02ht16qnurhv"]
+[gd_scene load_steps=7 format=4 uid="uid://c02ht16qnurhv"]
 
 [ext_resource type="PackedScene" uid="uid://dmn5bwgr4bbud" path="res://scenes/hud/hud.tscn" id="4_1xxhf"]
 [ext_resource type="TileSet" uid="uid://dx85xjs06gfsb" path="res://assets/TileSet/FaseTile.tres" id="4_5bdc2"]
 [ext_resource type="PackedScene" uid="uid://s08uidg41e7x" path="res://scenes/player/player.tscn" id="4_w3emi"]
+[ext_resource type="PackedScene" uid="uid://xbepkpqt24ay" path="res://scenes/ghost/base/ghost_normal.tscn" id="5_p78u1"]
 [ext_resource type="Material" uid="uid://d14hu2h6avwxm" path="res://scenes/levels/Level1/offset.tres" id="5_t7rm0"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="6_b05ff"]
 
@@ -53,4 +54,21 @@ scale = Vector2(0.40309712, 0.40119064)
 wall_min_slide_angle = 0.0
 platform_wall_layers = 255
 
+[node name="Ghost" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("5_p78u1")]
+position = Vector2(272, 271)
+ScatterGoalList = [NodePath("../Ghost1Goals/Goal0"), NodePath("../Ghost1Goals/Goal1"), NodePath("../Ghost1Goals/Goal2")]
+Player = NodePath("../Player")
+actual_state = 0
+
 [node name="HUD" parent="." instance=ExtResource("4_1xxhf")]
+
+[node name="Ghost1Goals" type="Node2D" parent="."]
+
+[node name="Goal0" type="Marker2D" parent="Ghost1Goals"]
+position = Vector2(680, 24)
+
+[node name="Goal1" type="Marker2D" parent="Ghost1Goals"]
+position = Vector2(556, 122)
+
+[node name="Goal2" type="Marker2D" parent="Ghost1Goals"]
+position = Vector2(553, 25)
