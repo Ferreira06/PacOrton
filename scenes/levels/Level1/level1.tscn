@@ -59,8 +59,30 @@ scale = Vector2(0.40309712, 0.40119064)
 wall_min_slide_angle = 0.0
 platform_wall_layers = 255
 
-[node name="Ghost" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("5_p78u1")]
+[node name="Ghost1" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("5_p78u1")]
 position = Vector2(272, 271)
+scatter_time = 5
+chase_time = 10
+ScatterGoalList = [NodePath("../Ghost1Goals/Goal0"), NodePath("../Ghost1Goals/Goal1"), NodePath("../Ghost1Goals/Goal2")]
+Player = NodePath("../Player")
+
+[node name="Ghost2" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("5_p78u1")]
+position = Vector2(271, 334)
+increment = Vector2(-32, 0)
+scatter_time = 3
+chase_time = 8
+ScatterGoalList = [NodePath("../Ghost1Goals/Goal0"), NodePath("../Ghost1Goals/Goal1"), NodePath("../Ghost1Goals/Goal2")]
+Player = NodePath("../Player")
+
+[node name="Ghost3" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("5_p78u1")]
+position = Vector2(449, 271)
+increment = Vector2(16, 16)
+ScatterGoalList = [NodePath("../Ghost1Goals/Goal0"), NodePath("../Ghost1Goals/Goal1"), NodePath("../Ghost1Goals/Goal2")]
+Player = NodePath("../Player")
+
+[node name="Ghost4" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("5_p78u1")]
+position = Vector2(449.99997, 337)
+increment = Vector2(0, -16)
 ScatterGoalList = [NodePath("../Ghost1Goals/Goal0"), NodePath("../Ghost1Goals/Goal1"), NodePath("../Ghost1Goals/Goal2")]
 Player = NodePath("../Player")
 
@@ -75,6 +97,42 @@ position = Vector2(680, 24)
 position = Vector2(556, 122)
 
 [node name="Goal2" type="Marker2D" parent="Ghost1Goals"]
+position = Vector2(553, 25)
+
+[node name="Ghost2Goals" type="Node2D" parent="."]
+position = Vector2(-504, 2)
+
+[node name="Goal0" type="Marker2D" parent="Ghost2Goals"]
+position = Vector2(680, 24)
+
+[node name="Goal1" type="Marker2D" parent="Ghost2Goals"]
+position = Vector2(556, 122)
+
+[node name="Goal2" type="Marker2D" parent="Ghost2Goals"]
+position = Vector2(553, 25)
+
+[node name="Ghost3Goals" type="Node2D" parent="."]
+position = Vector2(-512, 405)
+
+[node name="Goal0" type="Marker2D" parent="Ghost3Goals"]
+position = Vector2(680, 24)
+
+[node name="Goal1" type="Marker2D" parent="Ghost3Goals"]
+position = Vector2(556, 122)
+
+[node name="Goal2" type="Marker2D" parent="Ghost3Goals"]
+position = Vector2(553, 25)
+
+[node name="Ghost4Goals" type="Node2D" parent="."]
+position = Vector2(-54, 455)
+
+[node name="Goal0" type="Marker2D" parent="Ghost4Goals"]
+position = Vector2(680, 24)
+
+[node name="Goal1" type="Marker2D" parent="Ghost4Goals"]
+position = Vector2(556, 122)
+
+[node name="Goal2" type="Marker2D" parent="Ghost4Goals"]
 position = Vector2(553, 25)
 
 [node name="floor" type="TileMapLayer" parent="."]
