@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var movement_speed = 80
-@export var increment: Vector2 = Vector2(0, 0)
+@export var increment: Vector2
 
 @export var scatter_time: int
 @export var chase_time: int
@@ -21,7 +21,7 @@ var scatter_goal_index: int = 0
 
 func _ready() -> void:
 	for goal in ScatterGoalList:
-		goal.global_position = goal.global_position.snapped(tile_size) + increment
+		goal.global_position = goal.global_position.snapped(tile_size)
 
 	actual_state = GhostStates.SCATTERING
 	$ScatterTimer.start()
@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func chase() -> void:
-	$NavigationAgent2D.target_position = Player.global_position
+	$NavigationAgent2D.target_position = Player.global_position + increment 
 	nav_point_direction = to_local($NavigationAgent2D.get_next_path_position()).normalized()
 	velocity = nav_point_direction * movement_speed
 
