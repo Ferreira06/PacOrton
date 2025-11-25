@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c30qrm1xpi7yk"]
+[gd_scene load_steps=12 format=3 uid="uid://c30qrm1xpi7yk"]
 
 [ext_resource type="Script" uid="uid://brvyw61h7h2ms" path="res://scenes/menus/main_menu.gd" id="1_8r73w"]
 [ext_resource type="Material" uid="uid://cr4gj18o6fnc6" path="res://assets/Shaders/Material/WaveMaterial.tres" id="1_ng0o5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://yqukn7psm6jd" path="res://assets/Shaders/Material/Float.tres" id="3_1hnlc"]
 [ext_resource type="Texture2D" uid="uid://b5fb1jqy6sq8q" path="res://assets/UI Elements/backgroundCredit2.svg" id="4_50h1w"]
 [ext_resource type="Texture2D" uid="uid://o1comkdgde4h" path="res://assets/UI Elements/Title.svg" id="5_euy4r"]
+[ext_resource type="FontFile" uid="uid://ckm7k6ig05yqr" path="res://assets/RetroByte.ttf" id="6_1hnlc"]
 [ext_resource type="Theme" uid="uid://db6ymrk43emn4" path="res://assets/UI Elements/UI Botao.tres" id="6_bre17"]
 
 [sub_resource type="GDScript" id="GDScript_rhts7"]
@@ -68,7 +69,8 @@ offset_left = 0.00018310547
 offset_top = 3.0517578e-05
 offset_right = 1920.0002
 offset_bottom = 500.00003
-theme_override_font_sizes/font_size = 150
+theme_override_fonts/font = ExtResource("6_1hnlc")
+theme_override_font_sizes/font_size = 169
 text = "PacOrton"
 horizontal_alignment = 1
 vertical_alignment = 1
