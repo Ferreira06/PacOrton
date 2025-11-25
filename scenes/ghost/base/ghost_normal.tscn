@@ -178,13 +178,14 @@ debug_enabled = true
 
 [node name="ScatterTimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 5.0
+one_shot = true
 
 [node name="FrightenedTimer" type="Timer" parent="."]
 
 [node name="ChaseTimer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 15.0
+one_shot = true
 
 [connection signal="timeout" from="ScatterTimer" to="." method="_on_scatter_timer_timeout"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]

@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
 @export var movement_speed = 80
+@export var increment: Vector2 = Vector2(0, 0)
+
+@export var scatter_time: int
+@export var chase_time: int
 const tile_size := Vector2(16, 16)
 
 enum GhostStates {
@@ -17,11 +21,10 @@ var scatter_goal_index: int = 0
 
 func _ready() -> void:
 	for goal in ScatterGoalList:
-		goal.global_position = goal.global_position.snapped(tile_size)
+		goal.global_position = goal.global_position.snapped(tile_size) + increment
 
 	actual_state = GhostStates.SCATTERING
 	$ScatterTimer.start()
-	
 
 func _physics_process(_delta: float) -> void:
 	match actual_state:
@@ -48,11 +51,11 @@ func scatter() -> void:
 
 func _on_scatter_timer_timeout() -> void:
 	actual_state = GhostStates.CHASING
-	$ScatterTimer.stop()
-	$ChaseTimer.start()
+	#print("Cecília")
+	$ChaseTimer.start(chase_time)
 
 
 func _on_chase_timer_timeout() -> void:
 	actual_state = GhostStates.SCATTERING
-	$ChaseTimer.stop()
-	$ScatterTimer.start()
+	#print("Gustavo")
+	$ScatterTimer.start(scatter_time)
