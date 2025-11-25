@@ -14,8 +14,16 @@ position = Vector2(680, 24)
 [node name="Ghost" parent="." node_paths=PackedStringArray("Goal") instance=ExtResource("2_yx7mw")]
 texture_filter = 1
 position = Vector2(272, 272)
+collision_layer = 767
+collision_mask = 255
 Goal = NodePath("../Goal")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(354, 282)
-zoom = Vector2(1.5, 1.5)
+position = Vector2(368, 305)
+zoom = Vector2(1.79, 1.79)
+limit_left = -288
+limit_top = -79
+limit_right = 1024
+limit_bottom = 735
+position_smoothing_enabled = true
+position_smoothing_speed = 8.395
