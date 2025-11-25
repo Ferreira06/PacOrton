@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://xbepkpqt24ay"]
+[gd_scene load_steps=10 format=3 uid="uid://xbepkpqt24ay"]
 
 [ext_resource type="Texture2D" uid="uid://b77i76ty53jib" path="res://assets/ghosts/normal-ghost.svg" id="1_36l5f"]
 [ext_resource type="Script" uid="uid://e5y1etlwqkl0" path="res://scenes/ghost/base/ghost_normal.gd" id="1_tpqef"]
+[ext_resource type="Script" uid="uid://d0ck00i3uffjx" path="res://scenes/ghost/base/state_machine.gd" id="3_o15b7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rppay"]
 atlas = ExtResource("1_36l5f")
@@ -67,5 +68,8 @@ debug_enabled = true
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
 autostart = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_o15b7")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
