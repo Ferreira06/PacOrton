@@ -1,26 +1,51 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmn5bwgr4bbud"]
+[gd_scene load_steps=18 format=3 uid="uid://dmn5bwgr4bbud"]
 
 [ext_resource type="Script" uid="uid://b1v0144uw470k" path="res://scripts/hud.gd" id="1_mgtrf"]
 [ext_resource type="Material" uid="uid://yqukn7psm6jd" path="res://assets/Shaders/Material/Float.tres" id="2_mq0y1"]
 [ext_resource type="Texture2D" uid="uid://dd1pfpg4remc3" path="res://assets/UI Elements/HUD/Heaart.svg" id="2_v7mo4"]
 [ext_resource type="Shader" uid="uid://bbny7brlftxqe" path="res://ghostfloat.gdshader" id="3_go0ap"]
 [ext_resource type="Texture2D" uid="uid://cl0cxjqwsx8rh" path="res://assets/UI Elements/HUD/Border.svg" id="3_n56i7"]
-[ext_resource type="Texture2D" uid="uid://dv87x4kocfrr" path="res://assets/UI Elements/HUD/Heaarthit.svg" id="3_v7mo4"]
-[ext_resource type="Texture2D" uid="uid://bj3655kkjxlg2" path="res://assets/UI Elements/HUD/UI Poweruos.svg" id="4_go0ap"]
 [ext_resource type="Texture2D" uid="uid://b4ooock481eee" path="res://assets/UI Elements/HUD/XPFill.svg" id="4_mq0y1"]
 [ext_resource type="Texture2D" uid="uid://ckm6ed7yp48og" path="res://assets/UI Elements/HUD/XPBackground.svg" id="5_go0ap"]
-[ext_resource type="Texture2D" uid="uid://cyjfghb4g13d0" path="res://assets/UI Elements/HUD/UI PoweruosOff.svg" id="5_nhd55"]
-[ext_resource type="Texture2D" uid="uid://djdb5vltjghyg" path="res://assets/UI Elements/HUD/POWERUP gun.png" id="7_mq0y1"]
-[ext_resource type="Texture2D" uid="uid://brpveef7hqjyi" path="res://assets/UI Elements/HUD/POWERUP speed.png" id="8_go0ap"]
+[ext_resource type="Shader" uid="uid://u27yjj2e780r" path="res://assets/Shaders/Wave.gdshader" id="6_nhd55"]
+[ext_resource type="Texture2D" uid="uid://dv87x4kocfrr" path="res://assets/UI Elements/HUD/Heaarthit.svg" id="7_h_empty"]
+[ext_resource type="Texture2D" uid="uid://bj3655kkjxlg2" path="res://assets/UI Elements/HUD/UI Poweruos.svg" id="8_bg_on"]
+[ext_resource type="Texture2D" uid="uid://cyjfghb4g13d0" path="res://assets/UI Elements/HUD/UI PoweruosOff.svg" id="9_bg_off"]
+[ext_resource type="Texture2D" uid="uid://djdb5vltjghyg" path="res://assets/UI Elements/HUD/POWERUP gun.png" id="10_gun"]
+[ext_resource type="Texture2D" uid="uid://brpveef7hqjyi" path="res://assets/UI Elements/HUD/POWERUP speed.png" id="11_spd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6mn5"]
+shader = ExtResource("3_go0ap")
+shader_parameter/amplitude = 0.44
+shader_parameter/speed = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8nkf1"]
+shader = ExtResource("3_go0ap")
+shader_parameter/amplitude = 0.585
+shader_parameter/speed = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_558d4"]
+shader = ExtResource("3_go0ap")
+shader_parameter/amplitude = 0.92
+shader_parameter/speed = 2.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4m1a1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iioc1"]
+shader = ExtResource("6_nhd55")
+shader_parameter/tile_fac = Vector2(12.99, 6.135)
+shader_parameter/aspect_ratio = 0.35
+shader_parameter/offset_scale = Vector2(-0.58, 2)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_mgtrf")
 heart_full = ExtResource("2_v7mo4")
-heart_empty = ExtResource("3_v7mo4")
-bg_active = ExtResource("4_go0ap")
-bg_inactive = ExtResource("5_nhd55")
+heart_empty = ExtResource("7_h_empty")
+bg_active = ExtResource("8_bg_on")
+bg_inactive = ExtResource("9_bg_off")
 
 [node name="HeartContainer" type="HBoxContainer" parent="."]
+material = ExtResource("2_mq0y1")
 offset_left = 30.0
 offset_top = 26.0
 offset_right = 134.0
@@ -28,16 +53,19 @@ offset_bottom = 66.0
 scale = Vector2(2.5600004, 2.5600004)
 
 [node name="TextureRect" type="TextureRect" parent="HeartContainer"]
+material = SubResource("ShaderMaterial_q6mn5")
 layout_mode = 2
 texture = ExtResource("2_v7mo4")
 stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="HeartContainer"]
+material = SubResource("ShaderMaterial_8nkf1")
 layout_mode = 2
 texture = ExtResource("2_v7mo4")
 stretch_mode = 5
 
 [node name="TextureRect3" type="TextureRect" parent="HeartContainer"]
+material = SubResource("ShaderMaterial_558d4")
 layout_mode = 2
 texture = ExtResource("2_v7mo4")
 stretch_mode = 5
@@ -54,6 +82,7 @@ scale = Vector2(4.3687797, 4.0636435)
 [node name="XP_Over" type="TextureRect" parent="XPContainer"]
 z_index = 4096
 z_as_relative = false
+material = SubResource("ShaderMaterial_4m1a1")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -71,6 +100,7 @@ offset_bottom = 29.850647
 [node name="XP_Bar_Sprite" type="TextureRect" parent="XPContainer/XP_Mask"]
 z_index = 400
 texture_repeat = 3
+material = SubResource("ShaderMaterial_iioc1")
 layout_mode = 0
 offset_left = -0.3977221
 offset_top = -3.4653409
@@ -101,28 +131,30 @@ scale = Vector2(1.602519, 1.602519)
 
 [node name="Slot1" type="TextureRect" parent="PowerupContainer"]
 layout_mode = 2
-texture = ExtResource("4_go0ap")
+texture = ExtResource("9_bg_off")
 
 [node name="Icon" type="TextureRect" parent="PowerupContainer/Slot1"]
+visible = false
 layout_mode = 0
 offset_left = 17.472492
 offset_top = 4.992179
 offset_right = 47.95534
 offset_bottom = 58.657707
-texture = ExtResource("7_mq0y1")
+texture = ExtResource("10_gun")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot2" type="TextureRect" parent="PowerupContainer"]
 layout_mode = 2
-texture = ExtResource("4_go0ap")
+texture = ExtResource("9_bg_off")
 
 [node name="Icon" type="TextureRect" parent="PowerupContainer/Slot2"]
+visible = false
 layout_mode = 0
 offset_left = 19.362452
 offset_top = 4.9921846
 offset_right = 47.443237
 offset_bottom = 58.600998
-texture = ExtResource("8_go0ap")
+texture = ExtResource("11_spd")
 expand_mode = 3
 stretch_mode = 5
