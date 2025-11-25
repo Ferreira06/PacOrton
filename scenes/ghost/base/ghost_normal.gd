@@ -10,13 +10,13 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	$Timer.start()
 	var nav_point_direction = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-	print(nav_point_direction)
+	
 	velocity = nav_point_direction * movement_speed * delta
 	move_and_slide()
+	
 
 
 func _on_timer_timeout() -> void:
-	if $NavigationAgent2D.target_position != Goal.global_position:
-		$NavigationAgent2D.target_position = Goal.global_position
-	$Timer.start()
+	pass # Replace with function body.
