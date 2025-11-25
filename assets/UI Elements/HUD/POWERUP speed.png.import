@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb5yxrx6bev6k"
-path="res://.godot/imported/PacManSPEED.svg-3c6d97a3fd560105dad3eaf7a50107b4.ctex"
+uid="uid://brpveef7hqjyi"
+path="res://.godot/imported/POWERUP speed.png-8057d4a6a2118357074e05934545dc40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/powerups/PacManSPEED.svg"
-dest_files=["res://.godot/imported/PacManSPEED.svg-3c6d97a3fd560105dad3eaf7a50107b4.ctex"]
+source_file="res://assets/UI Elements/HUD/POWERUP speed.png"
+dest_files=["res://.godot/imported/POWERUP speed.png-8057d4a6a2118357074e05934545dc40.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

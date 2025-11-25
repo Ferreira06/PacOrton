@@ -25,43 +25,37 @@ signal health_changed(current_hp)
 signal xp_changed(current_xp, max_xp) # Sinal melhorado para a barra
 
 @export var max_health: int = 3
-@onready var current_health: int = max_health
+var current_health: int
+signal powerup_unlocked(id) # Avisa que ganhou (para mostrar o ícone)
+signal powerup_switched(id) # Avisa que trocou (para mudar o fundo)
 
-
+var current_selected_powerup: int = 0 # 0=Nenhum, 1=Arma, 2=Velocidade
 
 var has_gun: bool = false
 var has_speed_boost: bool = false
 var can_active_boost: bool = true
 
 func _ready() -> void:
+	current_health = max_health
 	# Snap to grid to ensure we start clean.
 	position = position.snapped(tile_size) + tile_size/2.0
 	target_pos = position
 
 func _physics_process(delta: float) -> void:
 	handle_input()
+	handle_powerup_switching()
 	
-	# Lógica do Boost Ativo (Tecla SPACE)
 	if has_speed_boost and Input.is_action_just_pressed("dash") and can_active_boost:
-		activate_speed_boost()
+		if current_selected_powerup == 2:
+			activate_speed_boost()
 		
-	# Lógica do Tiro (Tecla Z ou Clique)
-	if has_gun and Input.is_action_just_pressed("shoot"): # Configure "ui_accept" ou crie "shoot"
-		shoot()
+	# Lógica do Tiro (Só ativa se tiver o item E estiver selecionado (1))
+	if has_gun and Input.is_action_just_pressed("shoot"):
+		if current_selected_powerup == 1:
+			shoot()
 		
 	move_player(delta)
-	if has_gun:
-		gun_decoration.flip_h = pacman_animation.flip_h
-		gun_decoration.flip_v = pacman_animation.flip_v
-		# Opcional: Se o acessório tiver animação de andar, toque ela também
-		if current_dir != Vector2.ZERO:
-			gun_decoration.play("walk") # Certifique-se que existe essa animação
-		else:
-			gun_decoration.play("idle")
-
-	if has_speed_boost:
-		speed_decoration.flip_h = pacman_animation.flip_h
-		speed_decoration.flip_v = pacman_animation.flip_v
+	
 
 func handle_input() -> void:
 	if Input.is_action_pressed("ui_right"):
@@ -153,7 +147,7 @@ func hit_by_ghost():
 
 func gain_xp(amount: int):
 	xp += amount
-	var xp_next_level = 10 * level 
+	var xp_next_level = 10 * (level * 2) 
 	xp_changed.emit(xp, xp_next_level)
 	
 	if xp >= xp_next_level:
@@ -164,21 +158,63 @@ func trigger_level_up():
 	# Instancia a tela de Level Up
 	if level_up_scene:
 		var menu = level_up_scene.instantiate()
-		get_tree().root.add_child(menu) # Adiciona na raiz para ficar sobre tudo
-		menu.show_cards()
+		get_tree().root.add_child(menu)
+		
+		# --- NOVO BLOCO ---
+		# Cria a lista do que o player já possui
+		var my_upgrades = []
+		if has_gun:
+			my_upgrades.append(1) # ID 1 = Gun
+		if has_speed_boost:
+			my_upgrades.append(2) # ID 2 = Speed
+			
+		# Passa essa lista para a função show_cards
+		if my_upgrades.size() < 2 :
+			menu.show_cards(my_upgrades)
+		# ------------------
+		
 		menu.upgrade_selected.connect(_apply_upgrade)
 
+func handle_powerup_switching():
+	if Input.is_key_pressed(KEY_1):
+		if has_gun: # Só troca se tiver a arma
+			current_selected_powerup = 1
+			speed_decoration.visible = false
+			gun_decoration.visible = true
+			powerup_switched.emit(1) # Avisa a HUD
+			
+	elif Input.is_key_pressed(KEY_2):
+		if has_speed_boost: # Só troca se tiver a velocidade
+			current_selected_powerup = 2
+			gun_decoration.visible = false
+			speed_decoration.visible = true
+			speed = 140 
+			powerup_switched.emit(2) # Avisa a HUD
+
+# Atualize sua função existente de aplicar upgrade
 func _apply_upgrade(power_id: int):
 	match power_id:
 		1: # ARMA
 			has_gun = true
-			gun_decoration.visible = true # MOSTRA A ARMA
+			speed_decoration.visible = false
+			gun_decoration.visible = true
 			print("Poder: Arma Adquirido!")
+			# Avisa a HUD para mostrar o ícone e já seleciona
+			powerup_unlocked.emit(1)
+			current_selected_powerup = 1
+			
 		2: # VELOCIDADE
 			has_speed_boost = true
-			speed = 140 
-			speed_decoration.visible = true # MOSTRA O ACESSÓRIO DE VELOCIDADE
+			gun_decoration.visible = false
+			speed_decoration.visible = true
 			print("Poder: Velocidade Adquirida!")
+			speed = 140 
+			# Avisa a HUD para mostrar o ícone
+			powerup_unlocked.emit(2)
+			
+			# Se não tinha nada selecionado (ex: não pegou a arma ainda), seleciona este
+			if current_selected_powerup == 0:
+				current_selected_powerup = 2
 			
 			
 func shoot():

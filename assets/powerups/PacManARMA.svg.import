@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb5yxrx6bev6k"
-path="res://.godot/imported/PacManSPEED.svg-3c6d97a3fd560105dad3eaf7a50107b4.ctex"
+uid="uid://cc7jjj5hmt3gl"
+path="res://.godot/imported/PacManARMA.svg-ba86962240e542907afbdd82cce1e31c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/powerups/PacManSPEED.svg"
-dest_files=["res://.godot/imported/PacManSPEED.svg-3c6d97a3fd560105dad3eaf7a50107b4.ctex"]
+source_file="res://assets/powerups/PacManARMA.svg"
+dest_files=["res://.godot/imported/PacManARMA.svg-ba86962240e542907afbdd82cce1e31c.ctex"]
 
 [params]
 

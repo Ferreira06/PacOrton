@@ -3,11 +3,30 @@ extends Node2D
 @export var walkable_layer: TileMapLayer # Drag your "Zona" TileMapLayer here
 @export var collectible_scene: PackedScene # Drag your collectible.tscn here
 
+@onready var player = $Player
+@onready var hud = $HUD
+
 func _ready() -> void:
-	# We use call_deferred to be safe, but usually _ready is fine
 	get_node("/root/MusicController").play_track("level1")
+	
 	if walkable_layer and collectible_scene:
 		spawn_points()
+	
+	# Conecta os sinais
+	player.health_changed.connect(hud.update_health)
+	player.xp_changed.connect(hud.update_xp)
+	player.powerup_unlocked.connect(hud.unlock_powerup_slot)
+	player.powerup_switched.connect(hud.highlight_slot)
+	
+	# AGENDA a inicialização para o próximo frame seguro
+	call_deferred("setup_initial_ui")
+
+func setup_initial_ui():
+	hud.update_health(player.current_health)
+	
+	# O ideal é pegar essa variável do player se ela existir, ou chutar o valor do nível 1.
+	hud.update_xp(player.xp, 400)
+	
 
 func spawn_points():
 	# 1. Get all positions that are ALREADY occupied by manual items (Stars)

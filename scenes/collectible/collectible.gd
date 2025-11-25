@@ -16,6 +16,7 @@ func _on_body_entered(body: Node2D) -> void:
 	# Safety check to ensure only Player collects it
 	if body.name == "Player" or body.is_in_group("Player"):
 		collect(body)
+		
 
 func collect(player):
 	match item_type:

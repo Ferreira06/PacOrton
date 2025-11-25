@@ -158,15 +158,13 @@ animations = [{
 }]
 
 [node name="card" type="TextureButton"]
-custom_minimum_size = Vector2(100, 100)
-layout_direction = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(160, 320)
+offset_right = 32.0
+offset_bottom = 64.0
 script = ExtResource("1_kikvd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 160)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_rjlel")
 animation = &"gun_card_anim"

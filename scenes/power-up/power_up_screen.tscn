@@ -5,19 +5,22 @@
 
 [node name="PowerUpScreen" type="CanvasLayer"]
 process_mode = 3
-follow_viewport_enabled = true
 script = ExtResource("1_6mlxt")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 6.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="card" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_txcxs")]

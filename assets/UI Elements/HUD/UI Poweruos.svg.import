@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb5yxrx6bev6k"
-path="res://.godot/imported/PacManSPEED.svg-3c6d97a3fd560105dad3eaf7a50107b4.ctex"
+uid="uid://bj3655kkjxlg2"
+path="res://.godot/imported/UI Poweruos.svg-119ca5a0ee533be87ecc2f6b7b44709b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/powerups/PacManSPEED.svg"
-dest_files=["res://.godot/imported/PacManSPEED.svg-3c6d97a3fd560105dad3eaf7a50107b4.ctex"]
+source_file="res://assets/UI Elements/HUD/UI Poweruos.svg"
+dest_files=["res://.godot/imported/UI Poweruos.svg-119ca5a0ee533be87ecc2f6b7b44709b.ctex"]
 
 [params]
 
