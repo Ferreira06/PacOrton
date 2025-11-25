@@ -5,6 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	# We use call_deferred to be safe, but usually _ready is fine
+	get_node("/root/MusicController").play_track("level1")
 	if walkable_layer and collectible_scene:
 		spawn_points()
 
