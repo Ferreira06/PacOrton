@@ -7,7 +7,6 @@
 [ext_resource type="Material" uid="uid://yqukn7psm6jd" path="res://assets/Shaders/Material/Float.tres" id="5_itddf"]
 [ext_resource type="Script" uid="uid://7xnq5hnrqpfy" path="res://scripts/bg.gd" id="6_mrtxy"]
 
-
 [sub_resource type="LabelSettings" id="LabelSettings_4i6ig"]
 font = ExtResource("1_ftkwe")
 font_size = 271
@@ -27,7 +26,7 @@ script/source = "extends Button
 
 
 func _pressed() -> void:
-	get_tree().change_scene_to_file(\"res://main_menu.tscn\")
+	get_tree().change_scene_to_file(\"res://scenes/menus/main_menu.tscn\")
 "
 
 [node name="CreditsMenu" type="Control"]
