@@ -2,9 +2,9 @@ extends CanvasLayer
 
 signal upgrade_selected(power_id)
 
-@onready var card_1 = $CenterContainer/HBoxContainer/card
-@onready var card_2 = $CenterContainer/HBoxContainer/card2
-@onready var hbox = $CenterContainer/HBoxContainer
+@onready var card_1 = $CenterContainer/BackgroundImage/HBoxContainer/card
+@onready var card_2 = $CenterContainer/BackgroundImage/HBoxContainer/card2
+@onready var hbox = $CenterContainer/BackgroundImage/HBoxContainer
 
 # Configuração Central: ID -> Nome da Animação no Card
 var powerup_data = {
