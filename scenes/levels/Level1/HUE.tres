@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cxnsa5sjx7ney"]
+
+[ext_resource type="Shader" uid="uid://cjwwyohxoci2q" path="res://scenes/levels/Level1/1hue.gdshader" id="1_wkquv"]
+
+[resource]
+shader = ExtResource("1_wkquv")
+shader_parameter/shift_amount = 17.0

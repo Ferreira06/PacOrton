@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cpwu84vypylt0"]
+
+[ext_resource type="Shader" uid="uid://cguuddf54loe4" path="res://scenes/levels/Level4/4chaos.gdshader" id="1_d64jr"]
+
+[resource]
+shader = ExtResource("1_d64jr")
+shader_parameter/time_speed = 0.5000000074506
+shader_parameter/glitch_intensity = 0.00999999977648
+shader_parameter/pixelate_factor = 0.0
+shader_parameter/scanline_intensity = 0.66999998502416
+shader_parameter/distortion_scale = Vector2(0.055, 0.21)
+shader_parameter/swirl_amount = 4.55999989807488
+shader_parameter/swirl_pivot = Vector2(0.5, 0.5)
+shader_parameter/hue_speed = 0.70000001043084
+shader_parameter/rgb_shift_amount = 0.0
