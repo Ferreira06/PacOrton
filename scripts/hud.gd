@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var xp_mask: Control = $XPContainer/XP_Mask
+@onready var level_label: Label = $LevelLabel
 @onready var xp_bar_sprite: TextureRect = $XPContainer/XP_Mask/XP_Bar_Sprite
 
 @onready var heart_container: HBoxContainer = $HeartContainer
@@ -22,8 +23,8 @@ var max_bar_width: float
 @export var bg_inactive: Texture2D  # A imagem do fundo "apagado/comum"
 
 func _ready():
-	# Pega a largura que você desenhou no editor como sendo o "100%"
-	max_bar_width = xp_mask.size.x 
+	if xp_mask:
+		max_bar_width = xp_mask.size.x
 	reset_slots()
 
 func update_health(current_hp: int):
@@ -34,17 +35,18 @@ func update_health(current_hp: int):
 		else:
 			hearts[i].texture = heart_empty
 
-func update_xp(current_xp: int, max_xp_for_level: int):
-	# 1. Calcula a porcentagem (0.0 a 1.0)
-	var percent = float(current_xp) / float(max_xp_for_level)
+func update_stats(current_xp: int, max_xp_for_level: int, current_level: int):
+	# 1. Atualiza a Barra (Lógica antiga)
+	if max_xp_for_level > 0:
+		var percent = float(current_xp) / float(max_xp_for_level)
+		var new_width = max_bar_width * percent
+		
+		# Animação da barra
+		var tween = get_tree().create_tween()
+		tween.tween_property(xp_mask, "size:x", new_width, 0.3).set_trans(Tween.TRANS_SINE)
 	
-	# 2. Aplica ao tamanho da máscara
-	var new_width = max_bar_width * percent
-	
-	# Opcional: Animação suave (Tween)
-	var tween = get_tree().create_tween()
-	tween.tween_property(xp_mask, "size:x", new_width, 0.3).set_trans(Tween.TRANS_SINE)
-	
+	# Mostra apenas o número, ou "LVL 1", como preferir
+	level_label.text = str(current_level)
 	
 func reset_slots():
 	slot_1_bg.texture = bg_inactive

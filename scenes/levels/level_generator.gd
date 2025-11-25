@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 	# Conecta os sinais
 	player.health_changed.connect(hud.update_health)
-	player.xp_changed.connect(hud.update_xp)
+	player.stats_changed.connect(hud.update_stats)
 	player.powerup_unlocked.connect(hud.unlock_powerup_slot)
 	player.powerup_switched.connect(hud.highlight_slot)
 	
@@ -25,7 +25,7 @@ func setup_initial_ui():
 	hud.update_health(player.current_health)
 	
 	# O ideal é pegar essa variável do player se ela existir, ou chutar o valor do nível 1.
-	hud.update_xp(player.xp, 400)
+	hud.update_stats(player.xp, 10, player.level)
 	
 
 func spawn_points():

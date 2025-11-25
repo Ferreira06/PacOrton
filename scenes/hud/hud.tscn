@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmn5bwgr4bbud"]
+[gd_scene load_steps=21 format=3 uid="uid://dmn5bwgr4bbud"]
 
 [ext_resource type="Script" uid="uid://b1v0144uw470k" path="res://scripts/hud.gd" id="1_mgtrf"]
 [ext_resource type="Material" uid="uid://yqukn7psm6jd" path="res://assets/Shaders/Material/Float.tres" id="2_mq0y1"]
 [ext_resource type="Texture2D" uid="uid://dd1pfpg4remc3" path="res://assets/UI Elements/HUD/Heaart.svg" id="2_v7mo4"]
-[ext_resource type="Shader" uid="uid://bbny7brlftxqe" path="res://ghostfloat.gdshader" id="3_go0ap"]
+[ext_resource type="Shader" path="res://ghostfloat.gdshader" id="3_go0ap"]
 [ext_resource type="Texture2D" uid="uid://cl0cxjqwsx8rh" path="res://assets/UI Elements/HUD/Border.svg" id="3_n56i7"]
 [ext_resource type="Texture2D" uid="uid://b4ooock481eee" path="res://assets/UI Elements/HUD/XPFill.svg" id="4_mq0y1"]
 [ext_resource type="Texture2D" uid="uid://ckm6ed7yp48og" path="res://assets/UI Elements/HUD/XPBackground.svg" id="5_go0ap"]
@@ -11,8 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dv87x4kocfrr" path="res://assets/UI Elements/HUD/Heaarthit.svg" id="7_h_empty"]
 [ext_resource type="Texture2D" uid="uid://bj3655kkjxlg2" path="res://assets/UI Elements/HUD/UI Poweruos.svg" id="8_bg_on"]
 [ext_resource type="Texture2D" uid="uid://cyjfghb4g13d0" path="res://assets/UI Elements/HUD/UI PoweruosOff.svg" id="9_bg_off"]
-[ext_resource type="Texture2D" uid="uid://djdb5vltjghyg" path="res://assets/UI Elements/HUD/POWERUP gun.png" id="10_gun"]
-[ext_resource type="Texture2D" uid="uid://brpveef7hqjyi" path="res://assets/UI Elements/HUD/POWERUP speed.png" id="11_spd"]
+[ext_resource type="Texture2D" uid="uid://2wu3h67re0hi" path="res://assets/UI Elements/HUD/Gun.svg" id="12_558d4"]
+[ext_resource type="Texture2D" uid="uid://d26ykqgaawft4" path="res://assets/UI Elements/HUD/asa.svg" id="13_4m1a1"]
+[ext_resource type="FontFile" uid="uid://ckm7k6ig05yqr" path="res://assets/RetroByte.ttf" id="14_4m1a1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q6mn5"]
 shader = ExtResource("3_go0ap")
@@ -36,6 +37,13 @@ shader = ExtResource("6_nhd55")
 shader_parameter/tile_fac = Vector2(12.99, 6.135)
 shader_parameter/aspect_ratio = 0.35
 shader_parameter/offset_scale = Vector2(-0.58, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iioc1"]
+line_spacing = 0.0
+font = ExtResource("14_4m1a1")
+font_size = 48
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_mgtrf")
@@ -134,13 +142,12 @@ layout_mode = 2
 texture = ExtResource("9_bg_off")
 
 [node name="Icon" type="TextureRect" parent="PowerupContainer/Slot1"]
-visible = false
 layout_mode = 0
-offset_left = 17.472492
-offset_top = 4.992179
-offset_right = 47.95534
-offset_bottom = 58.657707
-texture = ExtResource("10_gun")
+offset_left = 13.10437
+offset_top = 1.8720913
+offset_right = 45.303688
+offset_bottom = 55.53762
+texture = ExtResource("12_558d4")
 expand_mode = 3
 stretch_mode = 5
 
@@ -149,12 +156,22 @@ layout_mode = 2
 texture = ExtResource("9_bg_off")
 
 [node name="Icon" type="TextureRect" parent="PowerupContainer/Slot2"]
-visible = false
 layout_mode = 0
-offset_left = 19.362452
-offset_top = 4.9921846
-offset_right = 47.443237
-offset_bottom = 58.600998
-texture = ExtResource("11_spd")
+offset_left = 9.378171
+offset_top = 8.112284
+offset_right = 60.306545
+offset_bottom = 61.721085
+scale = Vector2(0.8502358, 0.8502358)
+texture = ExtResource("13_4m1a1")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = 1711.0001
+offset_top = 877.0
+offset_right = 1751.0001
+offset_bottom = 919.0
+scale = Vector2(2.2000196, 2.2399852)
+label_settings = SubResource("LabelSettings_iioc1")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -22,7 +22,7 @@ var xp: int = 0
 var level: int = 1
 
 signal health_changed(current_hp)
-signal xp_changed(current_xp, max_xp) # Sinal melhorado para a barra
+signal stats_changed(current_xp, max_xp, current_level)
 
 @export var max_health: int = 3
 var current_health: int
@@ -148,13 +148,16 @@ func hit_by_ghost():
 func gain_xp(amount: int):
 	xp += amount
 	var xp_next_level = 10 * (level * 2) 
-	xp_changed.emit(xp, xp_next_level)
+	stats_changed.emit(xp, xp_next_level, level)
 	
 	if xp >= xp_next_level:
 		trigger_level_up()
 
 func trigger_level_up():
 	level += 1
+	xp = 0
+	var xp_next_level = 10 * level
+	stats_changed.emit(xp, xp_next_level, level)
 	# Instancia a tela de Level Up
 	if level_up_scene:
 		var menu = level_up_scene.instantiate()
