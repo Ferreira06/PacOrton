@@ -4,12 +4,12 @@
 
 [resource]
 shader = ExtResource("1_d64jr")
-shader_parameter/time_speed = 3.0
-shader_parameter/glitch_intensity = 0.05
-shader_parameter/pixelate_factor = 0.0
-shader_parameter/scanline_intensity = 0.3
-shader_parameter/distortion_scale = Vector2(0.02, 0.01)
-shader_parameter/swirl_amount = 1.0
+shader_parameter/time_speed = 0.40000000596048
+shader_parameter/glitch_intensity = 0.81999998167136
+shader_parameter/pixelate_factor = 50.0
+shader_parameter/scanline_intensity = 0.32999999262384
+shader_parameter/distortion_scale = Vector2(-0.075, 0.05)
+shader_parameter/swirl_amount = 0.0
 shader_parameter/swirl_pivot = Vector2(0.5, 0.5)
 shader_parameter/hue_speed = 0.10000000149012
-shader_parameter/rgb_shift_amount = 0.005
+shader_parameter/rgb_shift_amount = 0.02800000133

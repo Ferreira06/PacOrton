@@ -4,12 +4,12 @@
 
 [resource]
 shader = ExtResource("1_bsw3i")
-shader_parameter/Speed = 0.20000000298024
+shader_parameter/Speed = 1.0
 shader_parameter/scale = 0.0
-shader_parameter/distancia_x = 0.30000000447036
-shader_parameter/distancia_y = 0.30000000447036
+shader_parameter/distancia_x = 0.60000000894072
+shader_parameter/distancia_y = 1.0
 shader_parameter/onda_x = 0.5000000074506
 shader_parameter/onda_y = 0.5000000074506
-shader_parameter/velocity = 0.20000000298024
-shader_parameter/offset_scale = Vector2(2, 2)
-shader_parameter/hue_shift = 0.12999997474224
+shader_parameter/velocity = 0.5000000074506
+shader_parameter/offset_scale = Vector2(12.06, 2)
+shader_parameter/hue_shift = -0.97000000067056
