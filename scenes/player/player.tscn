@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6n135ihtelb" path="res://scenes/power-up/power_up_screen.tscn" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://kitwsd8fuw7b" path="res://assets/pacman/pacman-ud.svg" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cc7jjj5hmt3gl" path="res://assets/powerups/PacManARMA.svg" id="6_0owmy"]
-[ext_resource type="Texture2D" uid="uid://cb5yxrx6bev6k" path="res://assets/powerups/PacmanSPEED.svg" id="7_qek5x"]
+[ext_resource type="Texture2D" uid="uid://cb5yxrx6bev6k" path="res://assets/powerups/PacManSPEED.svg" id="7_qek5x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
