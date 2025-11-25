@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmn5bwgr4bbud"]
+
+[ext_resource type="Script" uid="uid://b1v0144uw470k" path="res://scripts/hud.gd" id="1_mgtrf"]
+[ext_resource type="Texture2D" uid="uid://dd1pfpg4remc3" path="res://assets/UI Elements/HUD/Heaart.svg" id="2_v7mo4"]
+[ext_resource type="Texture2D" uid="uid://cl0cxjqwsx8rh" path="res://assets/UI Elements/HUD/Border.svg" id="3_n56i7"]
+[ext_resource type="Texture2D" uid="uid://b4ooock481eee" path="res://assets/UI Elements/HUD/XPFill.svg" id="4_mq0y1"]
+[ext_resource type="Texture2D" uid="uid://ckm6ed7yp48og" path="res://assets/UI Elements/HUD/XPBackground.svg" id="5_go0ap"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_mgtrf")
+
+[node name="HeartContainer" type="HBoxContainer" parent="."]
+offset_left = 30.0
+offset_top = 26.0
+offset_right = 134.0
+offset_bottom = 66.0
+scale = Vector2(2.5600004, 2.5600004)
+
+[node name="TextureRect" type="TextureRect" parent="HeartContainer"]
+layout_mode = 2
+texture = ExtResource("2_v7mo4")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HeartContainer"]
+layout_mode = 2
+texture = ExtResource("2_v7mo4")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HeartContainer"]
+layout_mode = 2
+texture = ExtResource("2_v7mo4")
+stretch_mode = 5
+
+[node name="XPContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1613.0
+offset_top = 908.0
+offset_right = 1678.2002
+offset_bottom = 948.0
+scale = Vector2(4.3687797, 4.0636435)
+
+[node name="XP_Over" type="TextureRect" parent="XPContainer"]
+z_index = 4096
+z_as_relative = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_n56i7")
+stretch_mode = 5
+
+[node name="XP_Mask" type="Control" parent="XPContainer"]
+clip_contents = true
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 17.0
+offset_right = 62.450756
+offset_bottom = 29.850647
+
+[node name="XP_Bar_Sprite" type="TextureRect" parent="XPContainer/XP_Mask"]
+z_index = 400
+layout_mode = 0
+offset_left = -0.3977221
+offset_top = -3.4653409
+offset_right = 59.60228
+offset_bottom = 15.534659
+texture = ExtResource("4_mq0y1")
+expand_mode = 3
+
+[node name="XP_Background" type="TextureRect" parent="XPContainer/XP_Mask"]
+layout_mode = 0
+offset_left = -0.16882539
+offset_top = 0.71811014
+offset_right = 55.913437
+offset_bottom = 18.593172
+scale = Vector2(1.0734209, 0.71587956)
+texture = ExtResource("5_go0ap")

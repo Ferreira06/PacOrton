@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://vjulnprmxsr7"]
+[gd_scene load_steps=3 format=3 uid="uid://vjulnprmxsr7"]
 
 [ext_resource type="PackedScene" uid="uid://c02ht16qnurhv" path="res://scenes/levels/Level1/level1.tscn" id="1_ykeeq"]
 [ext_resource type="PackedScene" uid="uid://xbepkpqt24ay" path="res://scenes/ghost/base/ghost_normal.tscn" id="2_yx7mw"]
-[ext_resource type="PackedScene" uid="uid://s08uidg41e7x" path="res://scenes/player/player.tscn" id="3_ykeeq"]
 
 [node name="MainGame" type="Node2D"]
 
@@ -16,13 +15,6 @@ position = Vector2(680, 24)
 texture_filter = 1
 position = Vector2(272, 272)
 Goal = NodePath("../Goal")
-
-[node name="Player" parent="." instance=ExtResource("3_ykeeq")]
-z_index = 1
-position = Vector2(359.00003, 376)
-scale = Vector2(0.40309712, 0.40119064)
-wall_min_slide_angle = 0.0
-platform_wall_layers = 255
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(354, 282)

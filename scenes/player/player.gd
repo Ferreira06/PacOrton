@@ -21,6 +21,14 @@ var is_powered_up: bool = false
 var xp: int = 0
 var level: int = 1
 
+signal health_changed(current_hp)
+signal xp_changed(current_xp, max_xp) # Sinal melhorado para a barra
+
+@export var max_health: int = 3
+@onready var current_health: int = max_health
+
+
+
 var has_gun: bool = false
 var has_speed_boost: bool = false
 var can_active_boost: bool = true
@@ -126,21 +134,29 @@ func activate_power_up(duration: float):
 	is_powered_up = false
 	modulate = Color(1, 1, 1) # Reset color
 
-func hit_by_ghost():
-	if is_powered_up:
-		return
-	else:
-		die()
-
 func die():
 	print("Pacman died!")
 	get_tree().reload_current_scene()
 	
+func hit_by_ghost():
+	if is_powered_up:
+		return
+	
+	# Toma dano
+	current_health -= 1
+	health_changed.emit(current_health) # Avisa a UI
+	
+	if current_health <= 0:
+		die()
+	else:
+		print("Dano tomado! Vida restante: ", current_health)
+
 func gain_xp(amount: int):
 	xp += amount
-	print("XP: ", xp)
-	print("Lvl: ", level)	
-	if xp >= 10 and level == 1:
+	var xp_next_level = 10 * level 
+	xp_changed.emit(xp, xp_next_level)
+	
+	if xp >= xp_next_level:
 		trigger_level_up()
 
 func trigger_level_up():
