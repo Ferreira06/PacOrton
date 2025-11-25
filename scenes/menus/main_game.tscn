@@ -9,13 +9,17 @@
 [node name="Fase 1" parent="." instance=ExtResource("1_ykeeq")]
 position = Vector2(16, 0)
 
-[node name="Ghost" parent="." instance=ExtResource("2_yx7mw")]
+[node name="Goal" type="Marker2D" parent="."]
+position = Vector2(680, 24)
+
+[node name="Ghost" parent="." node_paths=PackedStringArray("Goal") instance=ExtResource("2_yx7mw")]
 texture_filter = 1
 position = Vector2(272, 272)
+Goal = NodePath("../Goal")
 
 [node name="Player" parent="." instance=ExtResource("3_ykeeq")]
 z_index = 1
-position = Vector2(312.00003, 377.00003)
+position = Vector2(359.00003, 376)
 scale = Vector2(0.40309712, 0.40119064)
 wall_min_slide_angle = 0.0
 platform_wall_layers = 255
