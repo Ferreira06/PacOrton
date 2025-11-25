@@ -1,3 +1,15 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://d14hu2h6avwxm"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d14hu2h6avwxm"]
+
+[ext_resource type="Shader" uid="uid://bn27i27j2rhd3" path="res://scenes/levels/Level1/1tileoffset.gdshader" id="1_bsw3i"]
 
 [resource]
+shader = ExtResource("1_bsw3i")
+shader_parameter/Speed = 0.20000000298024
+shader_parameter/scale = 0.0
+shader_parameter/distancia_x = 0.30000000447036
+shader_parameter/distancia_y = 0.30000000447036
+shader_parameter/onda_x = 0.5000000074506
+shader_parameter/onda_y = 0.5000000074506
+shader_parameter/velocity = 0.20000000298024
+shader_parameter/offset_scale = Vector2(2, 2)
+shader_parameter/hue_shift = 0.12999997474224
