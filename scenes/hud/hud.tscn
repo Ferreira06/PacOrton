@@ -21,7 +21,6 @@ bg_active = ExtResource("4_go0ap")
 bg_inactive = ExtResource("5_nhd55")
 
 [node name="HeartContainer" type="HBoxContainer" parent="."]
-material = ExtResource("2_mq0y1")
 offset_left = 30.0
 offset_top = 26.0
 offset_right = 134.0
@@ -29,19 +28,16 @@ offset_bottom = 66.0
 scale = Vector2(2.5600004, 2.5600004)
 
 [node name="TextureRect" type="TextureRect" parent="HeartContainer"]
-material = SubResource("ShaderMaterial_q6mn5")
 layout_mode = 2
 texture = ExtResource("2_v7mo4")
 stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="HeartContainer"]
-material = SubResource("ShaderMaterial_8nkf1")
 layout_mode = 2
 texture = ExtResource("2_v7mo4")
 stretch_mode = 5
 
 [node name="TextureRect3" type="TextureRect" parent="HeartContainer"]
-material = SubResource("ShaderMaterial_558d4")
 layout_mode = 2
 texture = ExtResource("2_v7mo4")
 stretch_mode = 5
@@ -58,7 +54,6 @@ scale = Vector2(4.3687797, 4.0636435)
 [node name="XP_Over" type="TextureRect" parent="XPContainer"]
 z_index = 4096
 z_as_relative = false
-material = SubResource("ShaderMaterial_4m1a1")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -76,7 +71,6 @@ offset_bottom = 29.850647
 [node name="XP_Bar_Sprite" type="TextureRect" parent="XPContainer/XP_Mask"]
 z_index = 400
 texture_repeat = 3
-material = SubResource("ShaderMaterial_iioc1")
 layout_mode = 0
 offset_left = -0.3977221
 offset_top = -3.4653409
