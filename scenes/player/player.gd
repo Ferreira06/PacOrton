@@ -58,22 +58,22 @@ func _physics_process(delta: float) -> void:
 	
 
 func handle_input() -> void:
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("move_right"):
 		pacman_animation.play("normal-right")
 		pacman_animation.flip_h = false
 		queued_dir = Vector2.RIGHT
 		
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("move_left"):
 		pacman_animation.play("normal-right")
 		pacman_animation.flip_h = true
 		queued_dir = Vector2.LEFT
 		
-	elif Input.is_action_pressed("ui_up"):
+	elif Input.is_action_pressed("move_up"):
 		pacman_animation.play("normal-up")
 		pacman_animation.flip_v = false
 		queued_dir = Vector2.UP
 		
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("move_down"):
 		pacman_animation.play("normal-up")
 		pacman_animation.flip_v = true
 		queued_dir = Vector2.DOWN
