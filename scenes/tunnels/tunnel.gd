@@ -41,15 +41,16 @@ func check_tunnel_logic(player: Node2D) -> void:
 
 func teleport_player(player: Node2D) -> void:
 	# Move player to the linked tunnel position
-	var new_pos = linked_tunnel.global_position
+	var new_pos = linked_tunnel.global_position.snapped(Vector2(16, 16)) + Vector2(16, 16) / 2.0
 	
-	player.position = new_pos
+	
 	
 	# Update grid movement target so the player doesn't "snap back"
 	if "target_pos" in player:
 		player.target_pos = new_pos
 	
 	print("Teleported to: ", linked_tunnel.name)
+	player.position = new_pos
 
 # This function is called by the OTHER tunnel before sending the player here
 func activate_cooldown() -> void:
