@@ -4,7 +4,7 @@ shader_type canvas_item;
 
 uniform float time_speed : hint_range(0.0, 10.0, 0.1) = 3.0; // Controla a velocidade da animação do glitch
 uniform float glitch_intensity : hint_range(0.0, 1.0, 0.01) = 0.05; // Intensidade de quão longe a imagem 'pula'
-uniform float pixelate_factor : hint_range(0.0, 50.0, 1.0) = 20.0; // Fator de pixelização
+uniform float pixelate_factor : hint_range(0.0, 200.0, 1.0) = 20.0; // Fator de pixelização
 uniform float scanline_intensity : hint_range(0.0, 1.0, 0.01) = 0.3; // Intensidade das linhas horizontais (scanlines)
 uniform vec2 distortion_scale = vec2(0.02, 0.01); // Escala da distorção
 
