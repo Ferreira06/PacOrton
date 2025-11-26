@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ba4u5007the3k" path="res://assets/TileSet/Tileset12.svg" id="1_0l8ey"]
 [ext_resource type="Shader" uid="uid://ceeaddfe01yci" path="res://scenes/levels/Level4/4HUE.gdshader" id="2_m0daa"]
-[ext_resource type="Shader" uid="uid://c1yexqyxwrihg" path="res://scenes/levels/Boss/BOSSBACKGROUND.gdshader" id="3_umpyo"]
+[ext_resource type="Shader" path="res://scenes/levels/Boss/BOSSBACKGROUND.gdshader" id="3_umpyo"]
 [ext_resource type="PackedScene" uid="uid://s08uidg41e7x" path="res://scenes/player/player.tscn" id="6_6hcuw"]
 [ext_resource type="PackedScene" uid="uid://dmn5bwgr4bbud" path="res://scenes/hud/hud.tscn" id="6_umpyo"]
 [ext_resource type="PackedScene" uid="uid://ceite2w8gfv6b" path="res://scenes/boss/AdaoSandro.tscn" id="7_umpyo"]
@@ -106,7 +106,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_m0daa")
 
 [node name="Fase 5" type="TileMapLayer"]
-position = Vector2(602, 268)
+position = Vector2(602, 271)
 tile_set = SubResource("TileSet_w0kuv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -120,6 +120,7 @@ offset_bottom = 676.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Zona5" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_wwoai")
@@ -139,6 +140,7 @@ size_flags_vertical = 4
 texture = SubResource("NoiseTexture2D_fiwof")
 expand_mode = 1
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Parede5" type="TileMapLayer" parent="."]
 texture_repeat = 3

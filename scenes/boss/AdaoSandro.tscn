@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceite2w8gfv6b"]
+[gd_scene load_steps=14 format=3 uid="uid://ceite2w8gfv6b"]
 
 [ext_resource type="Script" uid="uid://bf7netad4hvxj" path="res://scenes/boss/adao_sandro.gd" id="1_1tf8r"]
 [ext_resource type="Texture2D" uid="uid://dyjwafe4qh1lb" path="res://assets/boss/ADAO SANDRO.svg" id="1_77lgu"]
+[ext_resource type="PackedScene" uid="uid://bf0iaxs38dbhn" path="res://scenes/boss/bullet/bullet.tscn" id="2_0o3fl"]
+[ext_resource type="VideoStream" path="res://scenes/levels/Boss/boss2.ogv" id="3_r70nv"]
+[ext_resource type="PackedScene" uid="uid://cp0soh3ybclm8" path="res://scenes/menus/credits_menu.tscn" id="4_tnbs0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tf8r"]
 atlas = ExtResource("1_77lgu")
@@ -62,6 +65,9 @@ animations = [{
 
 [node name="AdaoSandro" type="CharacterBody2D"]
 script = ExtResource("1_1tf8r")
+bullet_scene = ExtResource("2_0o3fl")
+ending_video = ExtResource("3_r70nv")
+credits_scene = ExtResource("4_tnbs0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
@@ -73,7 +79,7 @@ polygon = PackedVector2Array(-31, 0, -21, -14, -8, -20, -16, -38, -16, -46, -13,
 
 [node name="TimerBetweenAttacks" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.030000000000000002
+wait_time = 0.03
 one_shot = true
 
 [node name="CooldownAttack1" type="Timer" parent="."]

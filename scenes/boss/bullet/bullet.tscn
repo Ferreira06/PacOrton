@@ -72,5 +72,4 @@ animation = &"ball_bullet"
 autoplay = "laser_bullet"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_3skc0")
