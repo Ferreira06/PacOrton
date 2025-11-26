@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://w2qywpnbn1jx"]
+[gd_scene load_steps=21 format=3 uid="uid://w2qywpnbn1jx"]
 
 [ext_resource type="Texture2D" uid="uid://c558koiemg3h" path="res://assets/UI Elements/Game Over/BGsvg.svg" id="1_xl4ts"]
 [ext_resource type="Texture2D" uid="uid://bg82ahyf6qp15" path="res://assets/UI Elements/Game Over/TETO1.svg" id="2_jywu3"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dph6dth6dipoh" path="res://assets/UI Elements/Game Over/CIANO.svg" id="9_820s7"]
 [ext_resource type="Texture2D" uid="uid://cmixs7mjbp5m1" path="res://assets/UI Elements/Game Over/YELOW.svg" id="10_db7fu"]
 [ext_resource type="Texture2D" uid="uid://cc7vecxersbnu" path="res://assets/UI Elements/Game Over/RED.svg" id="11_xrsxc"]
+[ext_resource type="Shader" uid="uid://cb63el1bhrd3i" path="res://scenes/menus/textWave.gdshader" id="12_2dmag"]
 [ext_resource type="FontFile" uid="uid://ckm7k6ig05yqr" path="res://assets/RetroByte.ttf" id="12_w4h2f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gre5i"]
@@ -38,64 +39,17 @@ shader_parameter/speed = 0.905
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pigga"]
 shader = ExtResource("8_gre5i")
 shader_parameter/amplitude = 10.18
-shader_parameter/speed = 1.5899999999999999
+shader_parameter/speed = 1.59
 
-[sub_resource type="Shader" id="Shader_w4h2f"]
-code = "shader_type canvas_item;
-
-// Parâmetro de animação: 1.0 = Invisível (tudo descartado) | 0.0 = Visível (nada descartado)
-uniform float dissolve_amount : hint_range(0.0, 1.0) = 1.0; 
-
-// Textura de Ruído: Essencial para o efeito. Atribua um NoiseTexture nela!
-uniform sampler2D noise_texture;
-
-void fragment() {
-    // 1. Amostra a cor base do texto (que já inclui a cor e alpha do Label)
-    vec4 base_color = texture(TEXTURE, UV) * COLOR;
-    
-    // Se o pixel for transparente, descarte-o imediatamente (otimização)
-    if (base_color.a < 0.01) {
-        discard;
-    }
-    
-    // 2. Coordenadas de Alta Frequência (Efeito Pixelado/Dither)
-    // Multiplicar por um valor alto (e.g., 64.0) faz com que a amostra de ruído 
-    // seja muito repetitiva, dando a aparência de blocos ou pixels individuais.
-    vec2 high_freq_uv = UV * 64.0;
-    
-    // 3. Amostra o Ruído (apenas o canal Vermelho)
-    // Não adicionamos TIME aqui para que o padrão de aparição seja estático e limpo.
-    float noise_value = texture(noise_texture, high_freq_uv).r;
-
-    // 4. Lógica de Dissolve (Threshold)
-    // Se o valor de ruído for maior que o dissolve_amount, o pixel aparece.
-    // Quando dissolve_amount está em 1.0, quase nenhum ruído é maior, então some.
-    // Quando dissolve_amount está em 0.0, a maioria do ruído é maior, então aparece.
-    
-    if (noise_value > dissolve_amount) {
-        COLOR = base_color;
-    } else {
-        discard; // O pixel é descartado, criando o efeito de esmaecimento pixelado.
-    }
-}"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_db7fu"]
-noise_type = 3
-frequency = 0.0769
-offset = Vector3(863.64, 0, 0)
-fractal_gain = 0.37
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xrsxc"]
-noise = SubResource("FastNoiseLite_db7fu")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sbhm6"]
-shader = SubResource("Shader_w4h2f")
-shader_parameter/dissolve_amount = 0.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_xrsxc")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rc36m"]
+shader = ExtResource("12_2dmag")
+shader_parameter/frequency = 0.10000000149012
+shader_parameter/amplitude = 5.0
+shader_parameter/speed = 0.30000000447036
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5mvm"]
 font = ExtResource("12_w4h2f")
-font_color = Color(0.44203168, 0, 0, 1)
+font_color = Color(1, 0.1882353, 0.2784314, 1)
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -206,7 +160,7 @@ alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
-material = SubResource("ShaderMaterial_sbhm6")
+material = SubResource("ShaderMaterial_rc36m")
 layout_mode = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_f5mvm")
