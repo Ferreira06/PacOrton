@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://cbc1pc6fw538s"]
+[gd_scene load_steps=17 format=4 uid="uid://cbc1pc6fw538s"]
 
 [ext_resource type="TileSet" uid="uid://dx85xjs06gfsb" path="res://assets/TileSet/FaseTile.tres" id="1_d51cm"]
+[ext_resource type="Script" uid="uid://bf5qsnwy1fh2y" path="res://scenes/levels/level_generator.gd" id="1_ipapq"]
 [ext_resource type="Shader" uid="uid://ceeaddfe01yci" path="res://scenes/levels/Level4/4HUE.gdshader" id="1_uvhrk"]
 [ext_resource type="Shader" uid="uid://bnd4qa5bkjd2a" path="res://scenes/levels/Level4/4parallax.gdshader" id="3_hcoie"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="3_t5hph"]
@@ -10,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://xbepkpqt24ay" path="res://scenes/ghost/base/ghost_normal.tscn" id="8_lkw8r"]
 [ext_resource type="PackedScene" uid="uid://dmn5bwgr4bbud" path="res://scenes/hud/hud.tscn" id="9_ipapq"]
 [ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://scenes/collectible/collectible.tscn" id="10_rf8lq"]
+[ext_resource type="PackedScene" uid="uid://bjemh47c5fgnv" path="res://scenes/tunnels/tunnel.tscn" id="12_ukn30"]
+[ext_resource type="PackedScene" uid="uid://cm4nrjrkppprm" path="res://scenes/levels/Boss/level5glicht.tscn" id="13_pqnbr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lkw8r"]
 shader = ExtResource("1_uvhrk")
@@ -39,8 +42,11 @@ shader_parameter/swirl_pivot = Vector2(0.5, 0.5)
 shader_parameter/hue_speed = 0.10000000149012
 shader_parameter/rgb_shift_amount = 0.0090000004275
 
-[node name="Level4" type="Node2D"]
+[node name="Level4" type="Node2D" node_paths=PackedStringArray("walkable_layer")]
 modulate = Color(0.15211344, 0.15211344, 0.15211344, 1)
+script = ExtResource("1_ipapq")
+walkable_layer = NodePath("floor")
+collectible_scene = ExtResource("10_rf8lq")
 
 [node name="fundo" type="TileMapLayer" parent="."]
 modulate = Color(0.29523852, 0.29523852, 0.29523852, 1)
@@ -79,7 +85,7 @@ tile_set = ExtResource("1_d51cm")
 
 [node name="Player" parent="." instance=ExtResource("7_hcoie")]
 z_index = 1
-position = Vector2(359.00003, 376)
+position = Vector2(360, 359)
 scale = Vector2(0.40309712, 0.40119064)
 wall_min_slide_angle = 0.0
 platform_wall_layers = 255
@@ -96,7 +102,7 @@ collision_mask = 3
 scatter_time = 5
 chase_time = 10
 ScatterGoalList = [NodePath("../Ghost1Goals/Goal0"), NodePath("../Ghost1Goals/Goal1"), NodePath("../Ghost1Goals/Goal2")]
-Player = NodePath("")
+Player = NodePath("../Player")
 
 [node name="Ghost2" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("8_lkw8r")]
 position = Vector2(271, 334)
@@ -104,19 +110,19 @@ increment = Vector2(-96, 0)
 scatter_time = 3
 chase_time = 8
 ScatterGoalList = [NodePath("../Ghost2Goals/Goal0"), NodePath("../Ghost2Goals/Goal1"), NodePath("../Ghost2Goals/Goal2")]
-Player = NodePath("")
+Player = NodePath("../Player")
 
 [node name="Ghost3" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("8_lkw8r")]
 position = Vector2(449, 271)
 increment = Vector2(96, 16)
 ScatterGoalList = [NodePath("../Ghost3Goals/Goal0"), NodePath("../Ghost3Goals/Goal1"), NodePath("../Ghost3Goals/Goal2")]
-Player = NodePath("")
+Player = NodePath("../Player")
 
 [node name="Ghost4" parent="." node_paths=PackedStringArray("ScatterGoalList", "Player") instance=ExtResource("8_lkw8r")]
 position = Vector2(449.99997, 337)
 increment = Vector2(0, -48)
 ScatterGoalList = [NodePath("../Ghost4Goals/Goal0"), NodePath("../Ghost4Goals/Goal1"), NodePath("../Ghost4Goals/Goal2")]
-Player = NodePath("")
+Player = NodePath("../Player")
 
 [node name="HUD" parent="." instance=ExtResource("9_ipapq")]
 
@@ -182,3 +188,25 @@ item_type = 1
 [node name="Area2D4" parent="." instance=ExtResource("10_rf8lq")]
 position = Vector2(520, 272)
 item_type = 1
+
+[node name="TunnelLeftDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_ukn30")]
+position = Vector2(-205, 353.00003)
+scale = Vector2(10.345798, 2.0193079)
+linked_tunnel = NodePath("../TunnelRightDown")
+
+[node name="TunnelLeftUp" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_ukn30")]
+position = Vector2(-202, 255)
+scale = Vector2(10.279059, 1.8555243)
+linked_tunnel = NodePath("../TunnelRightUp")
+
+[node name="TunnelRightUp" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_ukn30")]
+position = Vector2(876.00006, 257.00003)
+scale = Vector2(14.505797, 2.0193079)
+linked_tunnel = NodePath("../TunnelLeftUp")
+next_level_scene = ExtResource("13_pqnbr")
+
+[node name="TunnelRightDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_ukn30")]
+position = Vector2(880, 353)
+scale = Vector2(13.95906, 1.8555243)
+linked_tunnel = NodePath("../TunnelLeftDown")
+next_level_scene = ExtResource("13_pqnbr")

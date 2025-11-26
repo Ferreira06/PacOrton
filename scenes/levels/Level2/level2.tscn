@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://328en12d8n2"]
+[gd_scene load_steps=14 format=4 uid="uid://328en12d8n2"]
 
 [ext_resource type="TileSet" uid="uid://djwdf8rk7wswk" path="res://pacman_tileset.tres" id="1_p11n2"]
 [ext_resource type="Material" uid="uid://cxnsa5sjx7ney" path="res://scenes/levels/Level1/HUE.tres" id="2_hycp4"]
+[ext_resource type="Script" uid="uid://bf5qsnwy1fh2y" path="res://scenes/levels/level_generator.gd" id="2_wanck"]
 [ext_resource type="TileSet" uid="uid://dx85xjs06gfsb" path="res://assets/TileSet/FaseTile.tres" id="3_2tesj"]
 [ext_resource type="Shader" uid="uid://cs8dm7hm2p0j6" path="res://scenes/levels/Level2/2LevelParallax.gdshader" id="4_02dvm"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="5_onyl7"]
@@ -9,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://xbepkpqt24ay" path="res://scenes/ghost/base/ghost_normal.tscn" id="7_onyl7"]
 [ext_resource type="PackedScene" uid="uid://dmn5bwgr4bbud" path="res://scenes/hud/hud.tscn" id="8_dccjn"]
 [ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://scenes/collectible/collectible.tscn" id="9_vgxyq"]
+[ext_resource type="PackedScene" uid="uid://bjemh47c5fgnv" path="res://scenes/tunnels/tunnel.tscn" id="10_vgxyq"]
+[ext_resource type="PackedScene" uid="uid://cbtcxmt82q7u1" path="res://scenes/levels/Level3/level3.tscn" id="11_wanck"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0mew"]
 shader = ExtResource("4_02dvm")
@@ -22,9 +25,12 @@ shader_parameter/velocity = 1.0
 shader_parameter/offset_scale = Vector2(2, 2)
 shader_parameter/hue_shift = -0.4400000125171199
 
-[node name="Fase 2" type="TileMapLayer"]
+[node name="Fase 2" type="TileMapLayer" node_paths=PackedStringArray("walkable_layer")]
 modulate = Color(18.892157, 2.0596302, 0, 1)
 tile_set = ExtResource("1_p11n2")
+script = ExtResource("2_wanck")
+walkable_layer = NodePath("floor2")
+collectible_scene = ExtResource("9_vgxyq")
 
 [node name="fundo" type="TileMapLayer" parent="."]
 material = ExtResource("2_hycp4")
@@ -158,3 +164,25 @@ item_type = 1
 [node name="Area2D4" parent="." instance=ExtResource("9_vgxyq")]
 position = Vector2(344, 225)
 item_type = 1
+
+[node name="TunnelLeftDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("10_vgxyq")]
+position = Vector2(-189, 351.00003)
+scale = Vector2(14.505797, 2.0193079)
+linked_tunnel = NodePath("../TunnelRightDown")
+
+[node name="TunnelLeftUp" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("10_vgxyq")]
+position = Vector2(-190, 256.00003)
+scale = Vector2(13.95906, 1.8555243)
+linked_tunnel = NodePath("../TunnelRightUp")
+
+[node name="TunnelRightUp" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("10_vgxyq")]
+position = Vector2(891, 349)
+scale = Vector2(14.505797, 2.0193079)
+linked_tunnel = NodePath("../TunnelLeftUp")
+next_level_scene = ExtResource("11_wanck")
+
+[node name="TunnelRightDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("10_vgxyq")]
+position = Vector2(890, 254)
+scale = Vector2(13.95906, 1.8555243)
+linked_tunnel = NodePath("../TunnelLeftDown")
+next_level_scene = ExtResource("11_wanck")

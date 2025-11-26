@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://cbtcxmt82q7u1"]
+[gd_scene load_steps=16 format=4 uid="uid://cbtcxmt82q7u1"]
 
 [ext_resource type="TileSet" uid="uid://djwdf8rk7wswk" path="res://pacman_tileset.tres" id="1_25qwn"]
 [ext_resource type="Shader" uid="uid://b34u06bwd2fjg" path="res://scenes/levels/Level3/3LevelHueShift.gdshader" id="2_ji1gd"]
+[ext_resource type="Script" uid="uid://bf5qsnwy1fh2y" path="res://scenes/levels/level_generator.gd" id="2_uxhde"]
 [ext_resource type="TileSet" uid="uid://dx85xjs06gfsb" path="res://assets/TileSet/FaseTile.tres" id="3_wy4lv"]
 [ext_resource type="Shader" uid="uid://nxkikbtuhn1n" path="res://scenes/levels/Level3/3LevelParallax.gdshader" id="4_mewa6"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="5_wrgk7"]
@@ -10,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://xbepkpqt24ay" path="res://scenes/ghost/base/ghost_normal.tscn" id="8_r1fqn"]
 [ext_resource type="PackedScene" uid="uid://dmn5bwgr4bbud" path="res://scenes/hud/hud.tscn" id="9_uxhde"]
 [ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://scenes/collectible/collectible.tscn" id="10_ko468"]
+[ext_resource type="PackedScene" uid="uid://bjemh47c5fgnv" path="res://scenes/tunnels/tunnel.tscn" id="12_seowf"]
+[ext_resource type="PackedScene" uid="uid://cbc1pc6fw538s" path="res://scenes/levels/Level4/level4.tscn" id="13_wsgi4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r1fqn"]
 shader = ExtResource("2_ji1gd")
@@ -27,9 +30,12 @@ shader_parameter/velocity = 0.70000001043084
 shader_parameter/offset_scale = Vector2(2, 2)
 shader_parameter/hue_shift = -0.76000000536448
 
-[node name="Fase 3" type="TileMapLayer"]
+[node name="Fase 3" type="TileMapLayer" node_paths=PackedStringArray("walkable_layer")]
 modulate = Color(0.4597081, 0.4597081, 0.4597081, 1)
 tile_set = ExtResource("1_25qwn")
+script = ExtResource("2_uxhde")
+walkable_layer = NodePath("floor3")
+collectible_scene = ExtResource("10_ko468")
 
 [node name="fundo" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_r1fqn")
@@ -165,3 +171,36 @@ item_type = 1
 [node name="Area2D4" parent="." instance=ExtResource("10_ko468")]
 position = Vector2(344, 128)
 item_type = 1
+
+[node name="TunnelLeftMid" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
+position = Vector2(-189, 303.00003)
+scale = Vector2(14.505797, 2.0193079)
+linked_tunnel = NodePath("../TunnelRightMiddle")
+
+[node name="TunnelLeftUp" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
+position = Vector2(-190, 208.00003)
+scale = Vector2(13.95906, 1.8555243)
+linked_tunnel = NodePath("../TunnelRightUp")
+
+[node name="TunnelLeftDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
+position = Vector2(-189, 398.00003)
+scale = Vector2(14.505797, 2.0193079)
+linked_tunnel = NodePath("../TunnelRightDown")
+
+[node name="TunnelRightMiddle" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
+position = Vector2(891, 301)
+scale = Vector2(14.505797, 2.0193079)
+linked_tunnel = NodePath("../TunnelLeftMid")
+next_level_scene = ExtResource("13_wsgi4")
+
+[node name="TunnelRightUp" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
+position = Vector2(890, 206)
+scale = Vector2(13.95906, 1.8555243)
+linked_tunnel = NodePath("../TunnelLeftUp")
+next_level_scene = ExtResource("13_wsgi4")
+
+[node name="TunnelRightDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
+position = Vector2(887, 400)
+scale = Vector2(13.95906, 1.8555243)
+linked_tunnel = NodePath("../TunnelLeftDown")
+next_level_scene = ExtResource("13_wsgi4")

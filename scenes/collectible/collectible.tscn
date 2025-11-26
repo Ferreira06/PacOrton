@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dddp5qtx146bk" path="res://assets/collectibles/ball.svg" id="1_rd2yi"]
 [ext_resource type="Texture2D" uid="uid://c3a25bok1lq2d" path="res://assets/collectibles/star.svg" id="3_yciwo"]
 
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_yciwo"]
 radius = 7.0
 
@@ -165,6 +164,8 @@ animations = [{
 }]
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_8orai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
