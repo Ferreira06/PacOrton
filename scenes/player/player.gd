@@ -21,13 +21,17 @@ var is_powered_up: bool = false
 var xp: int = 0
 var level: int = 1
 
+# Signals
 signal health_changed(current_hp)
 signal stats_changed(current_xp, max_xp, current_level)
+signal powerup_unlocked(id) 
+signal powerup_switched(id)
 
 @export var max_health: int = 3
 var current_health: int
-signal powerup_unlocked(id) # Avisa que ganhou (para mostrar o ícone)
-signal powerup_switched(id) # Avisa que trocou (para mudar o fundo)
+
+# --- NEW: Invincibility Flag ---
+var can_take_damage: bool = true
 
 var current_selected_powerup: int = 0 # 0=Nenhum, 1=Arma, 2=Velocidade
 
@@ -49,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		if current_selected_powerup == 2:
 			activate_speed_boost()
 		
-	# Lógica do Tiro (Só ativa se tiver o item E estiver selecionado (1))
+	# Shoot Logic
 	if has_gun and Input.is_action_just_pressed("shoot"):
 		if current_selected_powerup == 1:
 			shoot()
@@ -119,31 +123,42 @@ func can_move(direction: Vector2) -> bool:
 
 func activate_power_up(duration: float):
 	is_powered_up = true
-	# Change appearance (Visual feedback)
-	modulate = Color(1, 1, 0.5) # Turn yellowish/bright
-	
-	# Wait for the duration, then turn it off
+	modulate = Color(1, 1, 0.5) 
 	await get_tree().create_timer(duration).timeout
-	
 	is_powered_up = false
-	modulate = Color(1, 1, 1) # Reset color
+	modulate = Color(1, 1, 1) 
 
 func die():
 	print("Pacman died!")
 	get_tree().reload_current_scene()
 	
 func hit_by_ghost():
-	if is_powered_up:
+	# If we have a star (power up) OR are currently blinking from damage
+	if is_powered_up or not can_take_damage:
 		return
 	
-	# Toma dano
+	# Apply Damage
 	current_health -= 1
-	health_changed.emit(current_health) # Avisa a UI
+	health_changed.emit(current_health)
 	
 	if current_health <= 0:
 		die()
 	else:
-		print("Dano tomado! Vida restante: ", current_health)
+		# --- INVINCIBILITY LOGIC ---
+		can_take_damage = false
+		print("Damage taken! HP: ", current_health)
+		
+		# Visual feedback (Blinking red)
+		modulate = Color(1, 0, 0)
+		await get_tree().create_timer(0.2).timeout
+		modulate = Color(1, 1, 1)
+		await get_tree().create_timer(0.2).timeout
+		modulate = Color(1, 0, 0)
+		await get_tree().create_timer(0.2).timeout
+		modulate = Color(1, 1, 1)
+		
+		# Cooldown finished
+		can_take_damage = true
 
 func gain_xp(amount: int):
 	xp += amount
@@ -158,89 +173,68 @@ func trigger_level_up():
 	xp = 0
 	var xp_next_level = 10 * level
 	stats_changed.emit(xp, xp_next_level, level)
-	# Instancia a tela de Level Up
 	if level_up_scene:
 		var menu = level_up_scene.instantiate()
 		get_tree().root.add_child(menu)
 		
-		# --- NOVO BLOCO ---
-		# Cria a lista do que o player já possui
 		var my_upgrades = []
-		if has_gun:
-			my_upgrades.append(1) # ID 1 = Gun
-		if has_speed_boost:
-			my_upgrades.append(2) # ID 2 = Speed
+		if has_gun: my_upgrades.append(1)
+		if has_speed_boost: my_upgrades.append(2)
 			
-		# Passa essa lista para a função show_cards
 		if my_upgrades.size() < 2 :
 			menu.show_cards(my_upgrades)
-		# ------------------
 		
 		menu.upgrade_selected.connect(_apply_upgrade)
 
 func handle_powerup_switching():
 	if Input.is_key_pressed(KEY_1):
-		if has_gun: # Só troca se tiver a arma
+		if has_gun: 
 			current_selected_powerup = 1
 			speed_decoration.visible = false
 			gun_decoration.visible = true
-			powerup_switched.emit(1) # Avisa a HUD
+			powerup_switched.emit(1) 
 			
 	elif Input.is_key_pressed(KEY_2):
-		if has_speed_boost: # Só troca se tiver a velocidade
+		if has_speed_boost: 
 			current_selected_powerup = 2
 			gun_decoration.visible = false
 			speed_decoration.visible = true
 			speed = 140 
-			powerup_switched.emit(2) # Avisa a HUD
+			powerup_switched.emit(2)
 
-# Atualize sua função existente de aplicar upgrade
 func _apply_upgrade(power_id: int):
 	match power_id:
-		1: # ARMA
+		1: # GUN
 			has_gun = true
 			speed_decoration.visible = false
 			gun_decoration.visible = true
-			print("Poder: Arma Adquirido!")
-			# Avisa a HUD para mostrar o ícone e já seleciona
 			powerup_unlocked.emit(1)
 			current_selected_powerup = 1
 			
-		2: # VELOCIDADE
+		2: # SPEED
 			has_speed_boost = true
 			gun_decoration.visible = false
 			speed_decoration.visible = true
-			print("Poder: Velocidade Adquirida!")
 			speed = 140 
-			# Avisa a HUD para mostrar o ícone
 			powerup_unlocked.emit(2)
-			
-			# Se não tinha nada selecionado (ex: não pegou a arma ainda), seleciona este
 			if current_selected_powerup == 0:
 				current_selected_powerup = 2
-			
 			
 func shoot():
 	if not bullet_scene: return
 	
 	var bullet = bullet_scene.instantiate()
 	bullet.position = position
-	# Define a direção do tiro baseada na última direção do player
 	var shoot_dir = current_dir if current_dir != Vector2.ZERO else Vector2.RIGHT
 	bullet.direction = shoot_dir
-	bullet.rotation = shoot_dir.angle() # Gira o sprite da bala
+	bullet.rotation = shoot_dir.angle()
 	get_parent().add_child(bullet)
 
 func activate_speed_boost():
 	can_active_boost = false
 	var old_speed = speed
-	speed = 250 # Velocidade insana por 2 segundos
-	
-	# Cria um timer temporário
+	speed = 250 
 	await get_tree().create_timer(2.0).timeout
-	
-	speed = old_speed # Volta ao normal (que já é o buffado passivo)
-	
-	# Cooldown de 5 segundos para usar de novo
+	speed = old_speed 
 	await get_tree().create_timer(5.0).timeout
 	can_active_boost = true

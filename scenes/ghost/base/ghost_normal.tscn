@@ -155,7 +155,7 @@ animations = [{
 radius = 13.188137
 height = 31.651527
 
-[node name="Ghost" type="CharacterBody2D"]
+[node name="Ghost" type="CharacterBody2D" groups=["ghosts"]]
 scale = Vector2(0.3791286, 0.3791286)
 collision_layer = 513
 motion_mode = 1

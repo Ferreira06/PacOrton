@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c02ht16qnurhv"]
+[gd_scene load_steps=11 format=4 uid="uid://c02ht16qnurhv"]
 
 [ext_resource type="Script" uid="uid://bf5qsnwy1fh2y" path="res://scenes/levels/level_generator.gd" id="1_p78u1"]
 [ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://scenes/collectible/collectible.tscn" id="2_iilps"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://xbepkpqt24ay" path="res://scenes/ghost/base/ghost_normal.tscn" id="5_p78u1"]
 [ext_resource type="Material" uid="uid://d14hu2h6avwxm" path="res://scenes/levels/Level1/offset.tres" id="5_t7rm0"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="6_b05ff"]
+[ext_resource type="PackedScene" uid="uid://bjemh47c5fgnv" path="res://scenes/tunnels/tunnel.tscn" id="9_t7rm0"]
+[ext_resource type="PackedScene" uid="uid://328en12d8n2" path="res://scenes/levels/Level2/level2.tscn" id="10_b05ff"]
 
 [node name="TileMapLayer" type="TileMapLayer" node_paths=PackedStringArray("walkable_layer")]
 script = ExtResource("1_p78u1")
@@ -157,3 +159,13 @@ item_type = 1
 [node name="Area2D4" parent="." instance=ExtResource("2_iilps")]
 position = Vector2(535, 139)
 item_type = 1
+[node name="TunnelRight" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("9_t7rm0")]
+position = Vector2(893, 303)
+scale = Vector2(13.95906, 1.8555243)
+linked_tunnel = NodePath("../TunnelLeft")
+next_level_scene = ExtResource("10_b05ff")
+
+[node name="TunnelLeft" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("9_t7rm0")]
+position = Vector2(-192, 304)
+scale = Vector2(13.92, 1.7200025)
+linked_tunnel = NodePath("../TunnelRight")
