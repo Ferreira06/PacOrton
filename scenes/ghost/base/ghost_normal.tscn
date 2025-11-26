@@ -174,7 +174,6 @@ path_desired_distance = 16.0
 target_desired_distance = 16.0
 path_postprocessing = 1
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="ScatterTimer" type="Timer" parent="."]
 process_callback = 0

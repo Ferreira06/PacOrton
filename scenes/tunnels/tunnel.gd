@@ -25,7 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 func check_tunnel_logic(player: Node2D) -> void:
 	var ghost_count = get_tree().get_nodes_in_group("ghosts").size()
 	
-	if ghost_count < 0:
+	if ghost_count > 0:
 		# --- Phase NOT complete: Teleport ---
 		if linked_tunnel:
 			# 1. Activate cooldown on the DESTINATION tunnel so it doesn't send us back
