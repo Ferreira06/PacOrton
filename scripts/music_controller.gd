@@ -41,3 +41,7 @@ func play_track(track_name: String):
 		current_track_name = track_name
 	else:
 		print("Erro: Não foi possível carregar o arquivo: " + music_file_path)
+		
+func stop():
+	music_player.stop()
+	current_track_name = ""

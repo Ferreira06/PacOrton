@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cbtcxmt82q7u1"]
+[gd_scene load_steps=17 format=4 uid="uid://cbtcxmt82q7u1"]
 
 [ext_resource type="TileSet" uid="uid://djwdf8rk7wswk" path="res://pacman_tileset.tres" id="1_25qwn"]
 [ext_resource type="Shader" uid="uid://b34u06bwd2fjg" path="res://scenes/levels/Level3/3LevelHueShift.gdshader" id="2_ji1gd"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://scenes/collectible/collectible.tscn" id="10_ko468"]
 [ext_resource type="PackedScene" uid="uid://bjemh47c5fgnv" path="res://scenes/tunnels/tunnel.tscn" id="12_seowf"]
 [ext_resource type="PackedScene" uid="uid://cbc1pc6fw538s" path="res://scenes/levels/Level4/level4.tscn" id="13_wsgi4"]
+[ext_resource type="VideoStream" path="res://scenes/levels/Level4/fase4.ogv" id="14_wsgi4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r1fqn"]
 shader = ExtResource("2_ji1gd")
@@ -192,15 +193,18 @@ position = Vector2(891, 301)
 scale = Vector2(14.505797, 2.0193079)
 linked_tunnel = NodePath("../TunnelLeftMid")
 next_level_scene = ExtResource("13_wsgi4")
+transition_video = ExtResource("14_wsgi4")
 
 [node name="TunnelRightUp" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
 position = Vector2(890, 206)
 scale = Vector2(13.95906, 1.8555243)
 linked_tunnel = NodePath("../TunnelLeftUp")
 next_level_scene = ExtResource("13_wsgi4")
+transition_video = ExtResource("14_wsgi4")
 
 [node name="TunnelRightDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_seowf")]
 position = Vector2(887, 400)
 scale = Vector2(13.95906, 1.8555243)
 linked_tunnel = NodePath("../TunnelLeftDown")
 next_level_scene = ExtResource("13_wsgi4")
+transition_video = ExtResource("14_wsgi4")

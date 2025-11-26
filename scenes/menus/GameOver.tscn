@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://w2qywpnbn1jx"]
+[gd_scene load_steps=23 format=3 uid="uid://w2qywpnbn1jx"]
 
 [ext_resource type="Texture2D" uid="uid://c558koiemg3h" path="res://assets/UI Elements/Game Over/BGsvg.svg" id="1_xl4ts"]
 [ext_resource type="Texture2D" uid="uid://bg82ahyf6qp15" path="res://assets/UI Elements/Game Over/TETO1.svg" id="2_jywu3"]
@@ -7,12 +7,13 @@
 [ext_resource type="Material" uid="uid://cr4gj18o6fnc6" path="res://assets/Shaders/Material/WaveMaterial.tres" id="5_f5mvm"]
 [ext_resource type="Shader" uid="uid://u27yjj2e780r" path="res://assets/Shaders/Wave.gdshader" id="5_w4h2f"]
 [ext_resource type="Texture2D" uid="uid://b5p6a3gwm7ypf" path="res://assets/UI Elements/Game Over/STATIC.svg" id="7_f5mvm"]
-[ext_resource type="Shader" uid="uid://bbny7brlftxqe" path="res://ghostfloat.gdshader" id="8_gre5i"]
+[ext_resource type="Shader" path="res://ghostfloat.gdshader" id="8_gre5i"]
 [ext_resource type="Texture2D" uid="uid://dph6dth6dipoh" path="res://assets/UI Elements/Game Over/CIANO.svg" id="9_820s7"]
 [ext_resource type="Texture2D" uid="uid://cmixs7mjbp5m1" path="res://assets/UI Elements/Game Over/YELOW.svg" id="10_db7fu"]
 [ext_resource type="Texture2D" uid="uid://cc7vecxersbnu" path="res://assets/UI Elements/Game Over/RED.svg" id="11_xrsxc"]
-[ext_resource type="Shader" uid="uid://cb63el1bhrd3i" path="res://scenes/menus/textWave.gdshader" id="12_2dmag"]
+[ext_resource type="Shader" path="res://scenes/menus/textWave.gdshader" id="12_2dmag"]
 [ext_resource type="FontFile" uid="uid://ckm7k6ig05yqr" path="res://assets/RetroByte.ttf" id="12_w4h2f"]
+[ext_resource type="Theme" uid="uid://db6ymrk43emn4" path="res://assets/UI Elements/UI Botao.tres" id="14_rc36m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gre5i"]
 shader = ExtResource("5_w4h2f")
@@ -50,6 +51,16 @@ shader_parameter/speed = 0.30000000447036
 [sub_resource type="LabelSettings" id="LabelSettings_f5mvm"]
 font = ExtResource("12_w4h2f")
 font_color = Color(1, 0.1882353, 0.2784314, 1)
+
+[sub_resource type="GDScript" id="GDScript_8udjf"]
+resource_name = "play_button"
+script/source = "extends Button
+
+
+func _pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/menus/main_menu.tscn\")
+	
+"
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -165,3 +176,16 @@ layout_mode = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_f5mvm")
 horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 701.0
+offset_top = 718.0
+offset_right = 1201.0
+offset_bottom = 925.0
+theme = ExtResource("14_rc36m")
+theme_override_font_sizes/font_size = 75
+text = "Restart"
+script = SubResource("GDScript_8udjf")

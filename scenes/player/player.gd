@@ -130,7 +130,7 @@ func activate_power_up(duration: float):
 
 func die():
 	print("Pacman died!")
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/menus/GameOver.tscn")
 	
 func hit_by_ghost():
 	# If we have a star (power up) OR are currently blinking from damage
@@ -238,3 +238,46 @@ func activate_speed_boost():
 	speed = old_speed 
 	await get_tree().create_timer(5.0).timeout
 	can_active_boost = true
+	
+# 1. Packs stats into a dictionary
+func get_stats() -> Dictionary:
+	return {
+		"health": current_health,
+		"xp": xp,
+		"level": level,
+		"has_gun": has_gun,
+		"has_speed_boost": has_speed_boost,
+		"current_powerup": current_selected_powerup
+	}
+
+# 2. Unpacks stats and updates the HUD
+func set_stats(data: Dictionary) -> void:
+	current_health = data["health"]
+	xp = data["xp"]
+	level = data["level"]
+	has_gun = data["has_gun"]
+	has_speed_boost = data["has_speed_boost"]
+	current_selected_powerup = data["current_powerup"]
+	
+	# Refresh UI immediately
+	health_changed.emit(current_health)
+	
+	# Recalculate max XP based on your gain_xp formula
+	var xp_next = 10 * (level * 2) 
+	stats_changed.emit(xp, xp_next, level)
+	
+	# Restore Powerups visually
+	if has_gun:
+		powerup_unlocked.emit(1)
+	if has_speed_boost:
+		powerup_unlocked.emit(2)
+		
+	# Restore Active Weapon
+	if current_selected_powerup == 1:
+		gun_decoration.visible = true
+		speed_decoration.visible = false
+		powerup_switched.emit(1)
+	elif current_selected_powerup == 2:
+		gun_decoration.visible = false
+		speed_decoration.visible = true
+		powerup_switched.emit(2)

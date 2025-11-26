@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cbc1pc6fw538s"]
+[gd_scene load_steps=18 format=4 uid="uid://cbc1pc6fw538s"]
 
 [ext_resource type="TileSet" uid="uid://dx85xjs06gfsb" path="res://assets/TileSet/FaseTile.tres" id="1_d51cm"]
 [ext_resource type="Script" uid="uid://bf5qsnwy1fh2y" path="res://scenes/levels/level_generator.gd" id="1_ipapq"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ctei6nkbx8kiw" path="res://scenes/collectible/collectible.tscn" id="10_rf8lq"]
 [ext_resource type="PackedScene" uid="uid://bjemh47c5fgnv" path="res://scenes/tunnels/tunnel.tscn" id="12_ukn30"]
 [ext_resource type="PackedScene" uid="uid://cm4nrjrkppprm" path="res://scenes/levels/Boss/level5glicht.tscn" id="13_pqnbr"]
+[ext_resource type="VideoStream" path="res://scenes/levels/Boss/boss1.ogv" id="14_pqnbr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lkw8r"]
 shader = ExtResource("1_uvhrk")
@@ -204,9 +205,11 @@ position = Vector2(876.00006, 257.00003)
 scale = Vector2(14.505797, 2.0193079)
 linked_tunnel = NodePath("../TunnelLeftUp")
 next_level_scene = ExtResource("13_pqnbr")
+transition_video = ExtResource("14_pqnbr")
 
 [node name="TunnelRightDown" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("12_ukn30")]
 position = Vector2(880, 353)
 scale = Vector2(13.95906, 1.8555243)
 linked_tunnel = NodePath("../TunnelLeftDown")
 next_level_scene = ExtResource("13_pqnbr")
+transition_video = ExtResource("14_pqnbr")

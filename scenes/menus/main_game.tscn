@@ -10,3 +10,17 @@ script = ExtResource("1_k7bwd")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(354, 282)
 zoom = Vector2(1.5, 1.5)
+
+[node name="VideoLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="VideoPlayer" type="VideoStreamPlayer" parent="VideoLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

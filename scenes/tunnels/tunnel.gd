@@ -6,6 +6,8 @@ extends Area2D
 # Drag the Next Level scene file (.tscn) here
 @export var next_level_scene: PackedScene
 
+@export var transition_video: VideoStream
+
 # A flag to prevent the tunnel from triggering immediately after receiving the player
 var is_on_cooldown: bool = false
 
@@ -61,14 +63,12 @@ func activate_cooldown() -> void:
 
 func change_level() -> void:
 	if next_level_scene:
-		# Get the MainGame node (assumes MainGame is the root of the scene tree)
 		var main_game = get_tree().current_scene
 		
 		if main_game.has_method("load_level"):
-			# Use the new manager system
-			main_game.load_level(next_level_scene)
+			# PASS THE VIDEO HERE
+			main_game.load_level(next_level_scene, transition_video) 
 		else:
-			# Fallback: standard scene switch (if testing level directly)
 			get_tree().change_scene_to_packed(next_level_scene)
 	else:
 		print("Tunnel: No next level scene assigned!")
