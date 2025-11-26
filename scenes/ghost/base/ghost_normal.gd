@@ -48,21 +48,30 @@ func _physics_process(_delta: float) -> void:
 			collider.hit_by_ghost()
 
 func chase() -> void:
-	if Player:
-		$NavigationAgent2D.target_position = Player.global_position
-		nav_point_direction = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-		velocity = nav_point_direction * movement_speed
+	$NavigationAgent2D.target_position = Player.global_position + increment 
+	nav_point_direction = to_local($NavigationAgent2D.get_next_path_position()).normalized()
+	velocity = nav_point_direction * movement_speed
+
 
 func scatter() -> void:
-	if ScatterGoalList.size() > 0:
-		$NavigationAgent2D.target_position = ScatterGoalList[scatter_goal_index].global_position
-		nav_point_direction = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-		velocity = nav_point_direction * movement_speed
-		
-		if $NavigationAgent2D.is_navigation_finished():
-			scatter_goal_index += 1
-			if scatter_goal_index >= ScatterGoalList.size():
-				scatter_goal_index = 0
+	$NavigationAgent2D.target_position = ScatterGoalList[scatter_goal_index].global_position
+	nav_point_direction = to_local($NavigationAgent2D.get_next_path_position()).normalized()
+	velocity = nav_point_direction * movement_speed
+
+	if $NavigationAgent2D.is_target_reached():
+		scatter_goal_index = (scatter_goal_index + 1) % ScatterGoalList.size()
+
+
+func _on_scatter_timer_timeout() -> void:
+	actual_state = GhostStates.CHASING
+	#print("Cecília")
+	$ChaseTimer.start(chase_time)
+
+
+func _on_chase_timer_timeout() -> void:
+	actual_state = GhostStates.SCATTERING
+	#print("Gustavo")
+	$ScatterTimer.start(scatter_time)
 
 # --- NEW: Function called by the Bullet ---
 func take_damage(amount: int) -> void:

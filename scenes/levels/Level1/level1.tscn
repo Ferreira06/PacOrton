@@ -159,6 +159,7 @@ item_type = 1
 [node name="Area2D4" parent="." instance=ExtResource("2_iilps")]
 position = Vector2(535, 139)
 item_type = 1
+
 [node name="TunnelRight" parent="." node_paths=PackedStringArray("linked_tunnel") instance=ExtResource("9_t7rm0")]
 position = Vector2(893, 303)
 scale = Vector2(13.95906, 1.8555243)
