@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cm4nrjrkppprm"]
+[gd_scene load_steps=12 format=4 uid="uid://cm4nrjrkppprm"]
 
 [ext_resource type="Texture2D" uid="uid://ba4u5007the3k" path="res://assets/TileSet/Tileset12.svg" id="1_0l8ey"]
 [ext_resource type="Shader" uid="uid://ceeaddfe01yci" path="res://scenes/levels/Level4/4HUE.gdshader" id="2_m0daa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://d14hu2h6avwxm" path="res://scenes/levels/Level1/offset.tres" id="4_umpyo"]
 [ext_resource type="Texture2D" uid="uid://dkdyjorxmjnyp" path="res://assets/TileSet/Paralax.svg" id="5_uxytf"]
 [ext_resource type="PackedScene" uid="uid://s08uidg41e7x" path="res://scenes/player/player.tscn" id="6_6hcuw"]
+[ext_resource type="PackedScene" uid="uid://ceite2w8gfv6b" path="res://scenes/boss/AdaoSandro.tscn" id="7_umpyo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q3q8m"]
 texture = ExtResource("1_0l8ey")
@@ -41,6 +42,7 @@ shader = ExtResource("2_m0daa")
 shader_parameter/hue_speed = 0.5
 
 [node name="Fase 5" type="TileMapLayer"]
+position = Vector2(602, 268)
 tile_set = SubResource("TileSet_w0kuv")
 
 [node name="Zona5" type="TileMapLayer" parent="."]
@@ -70,3 +72,6 @@ position = Vector2(359.00003, 376)
 scale = Vector2(0.40309712, 0.40119064)
 wall_min_slide_angle = 0.0
 platform_wall_layers = 255
+
+[node name="AdaoSandro" parent="." instance=ExtResource("7_umpyo")]
+position = Vector2(358, 303)

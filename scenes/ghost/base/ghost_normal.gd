@@ -80,3 +80,15 @@ func die() -> void:
 	# Removes ghost from the scene (and the 'ghosts' group)
 	# This will automatically update the Tunnel count!
 	queue_free()
+
+
+func _on_scatter_timer_timeout() -> void:
+	actual_state = GhostStates.CHASING
+	#print("Cecília")
+	$ChaseTimer.start(chase_time)
+
+
+func _on_chase_timer_timeout() -> void:
+	actual_state = GhostStates.SCATTERING
+	#print("Gustavo")
+	$ScatterTimer.start(scatter_time)

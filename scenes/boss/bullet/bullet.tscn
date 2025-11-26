@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://bf0iaxs38dbhn"]
+
+[ext_resource type="Texture2D" uid="uid://cgu78qfwcaalm" path="res://assets/boss/bullet/Laser.svg" id="1_1jp62"]
+[ext_resource type="Script" uid="uid://bei2ip0bfweap" path="res://scenes/boss/bullet/bullet.gd" id="1_hd3mi"]
+[ext_resource type="Texture2D" uid="uid://dwsx46trbq0b2" path="res://assets/boss/bullet/Boss Bullet.svg" id="2_kpf04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3skc0"]
+atlas = ExtResource("2_kpf04")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jp62"]
+atlas = ExtResource("1_1jp62")
+region = Rect2(0, 0, 20, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd3mi"]
+atlas = ExtResource("1_1jp62")
+region = Rect2(20, 0, 20, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpf04"]
+atlas = ExtResource("1_1jp62")
+region = Rect2(40, 0, 20, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_citjn"]
+atlas = ExtResource("1_1jp62")
+region = Rect2(60, 0, 20, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrm8o"]
+atlas = ExtResource("1_1jp62")
+region = Rect2(80, 0, 20, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3skc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3skc0")
+}],
+"loop": true,
+"name": &"ball_bullet",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jp62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd3mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpf04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_citjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrm8o")
+}],
+"loop": true,
+"name": &"laser_bullet",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3skc0"]
+radius = 2.0
+height = 20.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_hd3mi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3skc0")
+animation = &"ball_bullet"
+autoplay = "laser_bullet"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_3skc0")
